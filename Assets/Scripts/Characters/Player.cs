@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
         if (isJumping)
         {
-
+            controller.Jump(5);
         }
 
         controller.Move(horizontal * moveSpeed);
