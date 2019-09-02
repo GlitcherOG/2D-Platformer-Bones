@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private CharacterController2D controller;
-
-    public float moveSpeed = 10f;
-    public float jumpHeight = 5f;
-    public float climbSpeed = 10f;
+    public CharacterController2D[] controller;
+    public CinemachineVirtualCamera Camera;
+    public Text characternames;
+    public int character;
+    public float[] moveSpeed;
+    public float[] jumpHeight;
+    public float[] climbSpeed;
+    public string[] names;
     public float portalDistance = 1f;
+
     // Start is called before the first frame update
-
     private GameObject currentPortal;
-    void Start()
-    {
-        controller = GetComponent<CharacterController2D>();
-    }
-
 
     // Update is called once per frame
     void Update()
@@ -28,10 +28,11 @@ public class Player : MonoBehaviour
 
         if (isJumping)
         {
-            controller.Jump(jumpHeight);
+            controller[character].Jump(jumpHeight[character]);
         }
-        controller.Climb(vertical * climbSpeed);
-        controller.Move(horizontal * moveSpeed);
+
+        controller[character].Climb(vertical * climbSpeed[character]);
+        controller[character].Move(horizontal * moveSpeed[character]);
 
         if (currentPortal != null)
         {
@@ -40,35 +41,19 @@ public class Player : MonoBehaviour
                 currentPortal.SendMessage("Interact");
             }
         }
-    }
 
-    private void OnDrawGizmos()
-    {
-        if(currentPortal != null)
+        if(Input.GetKeyDown(KeyCode.E))
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(currentPortal.transform.position, portalDistance);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.CompareTag("Item"))
-        {
-            Destroy(col.gameObject);
-            GameManager.Instance.AddScore(1);
-        }
-        if (col.CompareTag("Portal"))
-        {
-            currentPortal = col.gameObject;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.CompareTag("Portal"))
-        {
-            currentPortal = null;
+            if (character >= controller.Length - 1)
+            {
+                character = 0;
+            }
+            else
+            {
+                character++;
+            }
+            characternames.text = names[character];
+            Camera.Follow = controller[character].gameObject.transform;
         }
     }
 }
