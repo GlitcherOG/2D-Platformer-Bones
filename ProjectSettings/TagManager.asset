@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Item
+  - Portal
   layers:
   - Default
   - TransparentFX
@@ -49,4 +51,7 @@ TagManager:
     locked: 0
   - name: PlayArea
     uniqueID: 1960431977
+    locked: 0
+  - name: ForgroundPlayArea
+    uniqueID: 203898727
     locked: 0
