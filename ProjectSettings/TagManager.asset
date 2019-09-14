@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - Portal
+  - Switch
   layers:
   - Default
   - TransparentFX
