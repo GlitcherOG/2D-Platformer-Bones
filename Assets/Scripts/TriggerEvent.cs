@@ -25,7 +25,10 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        onEnter.Invoke();
+        if (collision.CompareTag(hitTag))
+        {
+            onEnter.Invoke();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

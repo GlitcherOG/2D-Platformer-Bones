@@ -7,6 +7,7 @@ TagManager:
   - Item
   - Portal
   - Switch
+  - Spike
   layers:
   - Default
   - TransparentFX
