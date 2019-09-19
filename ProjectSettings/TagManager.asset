@@ -51,6 +51,9 @@ TagManager:
   - name: Foreground
     uniqueID: 3625954129
     locked: 0
+  - name: Foreground1
+    uniqueID: 1692794601
+    locked: 0
   - name: PlayArea
     uniqueID: 1960431977
     locked: 0
