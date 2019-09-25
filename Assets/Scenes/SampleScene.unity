@@ -410,7 +410,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1960431977
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -527,7 +527,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 203898727
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 44900c5a3a8ecb94096819f32be4b6d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1123,7 +1123,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1960431977
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1324,7 +1324,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1960431977
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -6468,7 +6468,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1960431977
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -7081,7 +7081,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1579306710}
-  - component: {fileID: 1579306709}
   - component: {fileID: 1579306712}
   - component: {fileID: 1579306711}
   m_Layer: 0
@@ -7091,42 +7090,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1579306709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579306708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d1df726c0c9f046bd9e53041a9a249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller:
-  - {fileID: 844149146}
-  - {fileID: 222681153}
-  - {fileID: 2013836391}
-  Camera: {fileID: 1293473791}
-  characternames: {fileID: 1901804510}
-  character: 0
-  moveSpeed:
-  - 2
-  - 5
-  - 2
-  jumpHeight:
-  - 5
-  - 2
-  - 2
-  climbSpeed:
-  - 2
-  - 2
-  - 5
-  names:
-  - Bob
-  - John
-  - Eve
-  portalDistance: 1
 --- !u!4 &1579306710
 Transform:
   m_ObjectHideFlags: 0
@@ -7157,6 +7120,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f046140654e3c97429c969fd0a43c0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: 0
+  moveSpeed:
+  - 5
+  - 5
+  - 5
+  jumpHeight:
+  - 5
+  - 5
+  - 5
+  climbSpeed:
+  - 5
+  - 5
+  - 5
+  names:
+  - Bob
+  - Eve
+  - John
+  characternames: {fileID: 0}
   curHealth: 25
   maxHealth: 25
   heartSlots:
@@ -7174,6 +7155,12 @@ MonoBehaviour:
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.2}
   curCheckPoint: {fileID: 0}
+  controller:
+  - {fileID: 844149146}
+  - {fileID: 222681153}
+  - {fileID: 2013836391}
+  Camera: {fileID: 0}
+  portalDistance: 1
 --- !u!82 &1579306712
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7828,7 +7815,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1960431977
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72de0c64f2c6a498096698322c976a67, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
