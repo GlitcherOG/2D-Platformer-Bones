@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 [RequireComponent(typeof(AudioSource))]
 
 public class PlayerHandler : MonoBehaviour
 {
+    [Header("Character Variables")]
+    public int character;
+    public float[] moveSpeed;
+    public float[] jumpHeight;
+    public float[] climbSpeed;
+    public string[] names;
+    public Text characternames;
 
     [Header("Value Variables")]
     public float curHealth;
-    // public float curMana, curStamina;
-    public float maxHealth; //, maxMana, maxStamina;
+    public float maxHealth;
     private float healthPerSection;
-
-    private float prevHealth, prevMana, prevStamina;
+    private float prevHealth;
         
     [Header("Heart Slots")]
     public Image[] heartSlots;
@@ -33,14 +39,17 @@ public class PlayerHandler : MonoBehaviour
     [Header("Check Point")]
     public Transform curCheckPoint;
     private float damageTimer;
-    //public PlayerPrefsSave saveAndLoad;
 
-    // Start is called before the first frame update
+    [Header("Camera")]
+    public CharacterController2D[] controller;
+    public CinemachineVirtualCamera Camera;
+    public float portalDistance = 1f;
+
+
     void Start()
     {
         playerAudio = GetComponent<AudioSource>();
         healthPerSection = (maxHealth / (heartSlots.Length) * .2f);
-
     }
 
     // Update is called once per frame
@@ -76,6 +85,31 @@ public class PlayerHandler : MonoBehaviour
         if (damageTimer > 0)
         {
             damageTimer -= Time.deltaTime;
+        }
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        bool isJumping = Input.GetButtonDown("Jump");
+
+        if (isJumping)
+        {
+            controller[character].Jump(jumpHeight[character]);
+        }
+
+        controller[character].Climb(vertical * climbSpeed[character]);
+        controller[character].Move(horizontal * moveSpeed[character]);
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (character >= controller.Length - 1)
+            {
+                character = 0;
+            }
+            else
+            {
+                character++;
+            }
+            characternames.text = names[character];
+            Camera.Follow = controller[character].gameObject.transform;
         }
     }
 

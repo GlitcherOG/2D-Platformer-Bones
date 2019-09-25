@@ -370,7 +370,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 119550134}
-  - component: {fileID: 119550133}
   - component: {fileID: 119550132}
   - component: {fileID: 119550131}
   m_Layer: 0
@@ -392,6 +391,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f046140654e3c97429c969fd0a43c0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: 0
+  moveSpeed: []
+  jumpHeight: []
+  climbSpeed: []
+  names: []
+  characternames: {fileID: 0}
   curHealth: 25
   maxHealth: 25
   heartSlots:
@@ -409,6 +414,9 @@ MonoBehaviour:
   flashSpeed: 5
   flashColour: {r: 1, g: 0, b: 0, a: 0.2}
   curCheckPoint: {fileID: 0}
+  controller: []
+  Camera: {fileID: 0}
+  portalDistance: 1
 --- !u!82 &119550132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -505,42 +513,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &119550133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 119550130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d1df726c0c9f046bd9e53041a9a249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller:
-  - {fileID: 82472441}
-  - {fileID: 928345046}
-  - {fileID: 541532042}
-  Camera: {fileID: 1138546293}
-  characternames: {fileID: 1514085424}
-  character: 0
-  moveSpeed:
-  - 5
-  - 7
-  - 5
-  jumpHeight:
-  - 5
-  - 2
-  - 2
-  climbSpeed:
-  - 2
-  - 2
-  - 5
-  names:
-  - Bob
-  - John
-  - Eve
-  portalDistance: 1
 --- !u!4 &119550134
 Transform:
   m_ObjectHideFlags: 0
