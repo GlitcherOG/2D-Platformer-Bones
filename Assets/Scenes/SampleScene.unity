@@ -302,6 +302,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  dJump: 0
+  temp: 0
 --- !u!4 &222681154
 Transform:
   m_ObjectHideFlags: 0
@@ -1135,6 +1137,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  dJump: 1
+  temp: 0
 --- !u!212 &844149147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7190,9 +7194,9 @@ MonoBehaviour:
   - 5
   - 5
   jumpHeight:
-  - 5
-  - 5
-  - 5
+  - 3
+  - 3
+  - 3
   climbSpeed:
   - 5
   - 5
@@ -7225,6 +7229,7 @@ MonoBehaviour:
   - {fileID: 2013836391}
   Camera: {fileID: 0}
   portalDistance: 1
+  temp: 0
 --- !u!82 &1579306712
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7783,6 +7788,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  dJump: 0
+  temp: 0
 --- !u!4 &2013836392
 Transform:
   m_ObjectHideFlags: 0
