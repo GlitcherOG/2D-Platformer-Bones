@@ -45,7 +45,6 @@ public class PlayerHandler : MonoBehaviour
     public CinemachineVirtualCamera Camera;
     public float portalDistance = 1f;
 
-
     void Start()
     {
         playerAudio = GetComponent<AudioSource>();

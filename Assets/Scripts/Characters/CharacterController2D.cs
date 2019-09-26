@@ -36,6 +36,8 @@ public class CharacterController2D : MonoBehaviour
     public bool IsFacingRight { get; private set; } = true;
     public Rigidbody2D Rigidbody { get; private set; }
     public Animator Anim { get; private set; }
+    public bool dJump;
+    private bool temp;
 
     public bool HasParameter(string paramName, Animator animator)
     {
@@ -101,6 +103,10 @@ public class CharacterController2D : MonoBehaviour
                 IsFrontBlocked = true;
             }
         }
+        if(IsGrounded)
+        {
+            temp = false;
+        }
     }
 
     private void AnimateDefault()
@@ -158,8 +164,15 @@ public class CharacterController2D : MonoBehaviour
     }
     public void Jump(float height)
     {
+        if (!IsGrounded && dJump == true && temp == false)
+        {
+            temp = true;
+            // Add a vertical force to the player.
+            IsGrounded = false;
+            Rigidbody.AddForce(new Vector2(0f, height), ForceMode2D.Impulse);
+        }
         // If the player should jump...
-        if (IsGrounded)
+        if (IsGrounded && temp==false)
         {
             // Add a vertical force to the player.
             IsGrounded = false;
