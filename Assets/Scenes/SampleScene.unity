@@ -303,7 +303,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   dJump: 0
-  temp: 0
 --- !u!4 &222681154
 Transform:
   m_ObjectHideFlags: 0
@@ -913,7 +912,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 572772687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad441fb80c567f446b382197923b01c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 382c4ead01cd41746997e8c24ed419ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1818098017}
@@ -1138,7 +1137,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   dJump: 1
-  temp: 0
 --- !u!212 &844149147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7139,6 +7137,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538108091}
   m_CullTransparentMesh: 0
+--- !u!212 &1560435903 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5541465593248590958, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8183669914961262728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1579306708
 GameObject:
   m_ObjectHideFlags: 0
@@ -7205,7 +7209,7 @@ MonoBehaviour:
   - Bob
   - Eve
   - John
-  characternames: {fileID: 0}
+  characternames: {fileID: 1901804510}
   curHealth: 25
   maxHealth: 25
   heartSlots:
@@ -7227,9 +7231,8 @@ MonoBehaviour:
   - {fileID: 844149146}
   - {fileID: 222681153}
   - {fileID: 2013836391}
-  Camera: {fileID: 0}
+  Camera: {fileID: 1293473791}
   portalDistance: 1
-  temp: 0
 --- !u!82 &1579306712
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7789,7 +7792,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   dJump: 0
-  temp: 0
 --- !u!4 &2013836392
 Transform:
   m_ObjectHideFlags: 0
@@ -8198,7 +8200,7 @@ PrefabInstance:
     - target: {fileID: 533641457565925044, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
         type: 3}
       propertyPath: m_Name
-      value: New Sprite
+      value: Switch
       objectReference: {fileID: 0}
     - target: {fileID: 5867523228544009307, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
         type: 3}
@@ -8282,6 +8284,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300016, guid: 55a8ea1d664d7234587b441ef034889e,
         type: 3}
+    - target: {fileID: 1640013150154958198, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
+        type: 3}
+      propertyPath: currentState
+      value: 
+      objectReference: {fileID: 1560435903}
     - target: {fileID: 7091650743207742436, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
         type: 3}
       propertyPath: m_SpriteTilingProperty.border.x
