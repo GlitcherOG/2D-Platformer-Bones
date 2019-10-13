@@ -54,6 +54,12 @@ TagManager:
   - name: Foreground1
     uniqueID: 1692794601
     locked: 0
+  - name: Platforms
+    uniqueID: 2970750051
+    locked: 0
+  - name: Decals
+    uniqueID: 4007484175
+    locked: 0
   - name: PlayArea
     uniqueID: 1960431977
     locked: 0
