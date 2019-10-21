@@ -169,14 +169,14 @@ public class CharacterController2D : MonoBehaviour
             temp = true;
             // Add a vertical force to the player.
             IsGrounded = false;
-            Rigidbody.AddForce(new Vector2(0f, height), ForceMode2D.Impulse);
+            Rigidbody.AddForce(new Vector2(0f, height+Rigidbody.velocity.y), ForceMode2D.Impulse);
         }
         // If the player should jump...
         if (IsGrounded && temp==false)
         {
             // Add a vertical force to the player.
             IsGrounded = false;
-            Rigidbody.AddForce(new Vector2(0f, height), ForceMode2D.Impulse);
+            Rigidbody.AddForce(new Vector2(0f, height + Rigidbody.velocity.y), ForceMode2D.Impulse);
         }
     }
     
