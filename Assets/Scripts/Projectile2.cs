@@ -12,8 +12,10 @@ public class Projectile2 : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane * 10));
+
             transform.LookAt(worldMousePos);
             GameObject bullet = Instantiate(projectile, transform.position, transform.rotation) as GameObject;
+
             bullet.GetComponent<Rigidbody2D>().velocity = transform.TransformDirection(new Vector3(0, 0, projectileSpeed));
             StartCoroutine(RemoveProjectile(bullet, 5f));
         }
