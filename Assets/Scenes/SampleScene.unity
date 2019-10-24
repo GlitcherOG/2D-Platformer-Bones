@@ -1115,6 +1115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
   projectileSpeed: 5
+  projectileDestroyTime: 5
 --- !u!1 &678076566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1293,6 +1294,7 @@ GameObject:
   - component: {fileID: 844149152}
   - component: {fileID: 844149151}
   - component: {fileID: 844149153}
+  - component: {fileID: 844149154}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1478,7 +1480,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 844149145}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 382c4ead01cd41746997e8c24ed419ed, type: 3}
   m_Name: 
@@ -1486,6 +1488,22 @@ MonoBehaviour:
   projectile: {fileID: 8873641351614948021, guid: dbc0e2614a8610840960720cf769ed19,
     type: 3}
   projectileSpeed: 8
+  projectileDestroyTime: 5
+--- !u!114 &844149154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844149145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa03894bdfa7a64b9187027a0783115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 8873641351614948021, guid: dbc0e2614a8610840960720cf769ed19,
+    type: 3}
+  projectileSpeed: 5
 --- !u!1 &857176415
 GameObject:
   m_ObjectHideFlags: 0
@@ -8683,12 +8701,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Switch
       objectReference: {fileID: 0}
-    - target: {fileID: 5541465593248590958, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300016, guid: 55a8ea1d664d7234587b441ef034889e,
-        type: 3}
     - target: {fileID: 5867523228544009307, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8759,6 +8771,12 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5541465593248590958, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300016, guid: 55a8ea1d664d7234587b441ef034889e,
+        type: 3}
     - target: {fileID: 1640013150154958198, guid: efe8c26ffc3b9dc43ba1e92c010f1da6,
         type: 3}
       propertyPath: states.Array.data[0]
