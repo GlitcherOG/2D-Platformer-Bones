@@ -14,9 +14,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping
     [SerializeField] private bool m_StickToSlopes = true;                         // Whether or not a player can stick to slopes
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
-    [SerializeField] private LayerMask m_WhatIsLadder;                          // A mask determining what is ladder to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
-    [SerializeField] private Transform m_LadderCheck;                           // A position marking where the starting point of ladder ray is.
     [SerializeField] private Transform m_FrontCheck;                            // A position makring where to check if the player is not hitting anything
     [SerializeField] private float m_GroundedRadius = .05f;                      // Radius of the overlap circle to determine if grounded
     [SerializeField] private float m_FrontCheckRadius = .05f;                      // Radius of the overlap circle to determine if front is blocked
@@ -31,7 +29,6 @@ public class CharacterController2D : MonoBehaviour
 
     // Public Getters / Setters (Parameters)
     public bool IsGrounded { get; private set; }
-    public bool IsClimbing { get; private set; }
     public bool IsFrontBlocked { get; private set; }
     public bool IsFacingRight { get; private set; } = true;
     public Rigidbody2D Rigidbody { get; private set; }
@@ -70,9 +67,6 @@ public class CharacterController2D : MonoBehaviour
         Ray groundRay = new Ray(transform.position, Vector3.down);
         Gizmos.DrawLine(groundRay.origin, groundRay.origin + groundRay.direction * m_GroundRayLength);
 
-        Gizmos.color = Color.red;
-        Ray ladderRay = new Ray(m_LadderCheck.position, Vector3.up);
-        Gizmos.DrawLine(ladderRay.origin, ladderRay.origin + ladderRay.direction * m_LadderRayLength);
     }
     private void FixedUpdate()
     {
@@ -114,9 +108,6 @@ public class CharacterController2D : MonoBehaviour
         if(HasParameter("IsGrounded", Anim))
             Anim.SetBool("IsGrounded", IsGrounded);
 
-        if(HasParameter("IsClimbing", Anim))
-            Anim.SetBool("IsClimbing", IsClimbing);
-
         if(HasParameter("JumpY", Anim))
             Anim.SetFloat("JumpY", Rigidbody.velocity.y);
     }
@@ -133,35 +124,6 @@ public class CharacterController2D : MonoBehaviour
     }
     
     // >> Custom methods go here <<
-
-    public void Climb(float offsetY)
-    {
-        if (HasParameter("ClimbSpeed", Anim))
-            Anim.SetFloat("ClimbSpeed", offsetY);
-
-        RaycastHit2D ladderHit = Physics2D.Raycast(m_LadderCheck.position, Vector2.up, m_LadderRayLength, m_WhatIsLadder);
-        if (ladderHit.collider != null)
-        {
-            if (offsetY != 0)
-            {
-                IsClimbing = true;
-            }
-        }
-        else
-        {
-            IsClimbing = false;
-        }
-
-        if (IsClimbing)
-        {
-            Rigidbody.gravityScale = 0;
-            Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, offsetY);
-        }
-        else
-        {
-            Rigidbody.gravityScale = m_OriginalGravityScale;
-        }
-    }
     public void Jump(float height)
     {
         if (!IsGrounded && dJump == true && temp == false)

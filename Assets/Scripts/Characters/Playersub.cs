@@ -26,18 +26,6 @@ public class Playersub : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    private void OnDrawGizmos()
-    {
-        if (currentPortal != null)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(currentPortal.transform.position, portalDistance);
-            }
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -45,10 +33,6 @@ public class Playersub : MonoBehaviour
         {
             Destroy(col.gameObject);
             GameManager.Instance.AddScore(1);
-        }
-        if (col.CompareTag("Portal"))
-        {
-            currentPortal = col.gameObject;
         }
         if (col.CompareTag("Switch"))
         {
@@ -58,10 +42,6 @@ public class Playersub : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.CompareTag("Portal"))
-        {
-            currentPortal = null;
-        }
         if (col.CompareTag("Switch"))
         {
             switchTog = null;

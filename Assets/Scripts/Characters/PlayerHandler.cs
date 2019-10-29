@@ -12,9 +12,8 @@ public class PlayerHandler : MonoBehaviour
     public int character;
     public float[] moveSpeed;
     public float[] jumpHeight;
-    public float[] climbSpeed;
-    public string[] names;
-    public Text characternames;
+    public Sprite[] logo;
+    public Image logoswitch;
 
     [Header("Value Variables")]
     public float curHealth;
@@ -42,7 +41,7 @@ public class PlayerHandler : MonoBehaviour
 
     [Header("Camera")]
     public CharacterController2D[] controller;
-    public CinemachineVirtualCamera Camera;
+    public GameObject Camera;
     public float portalDistance = 1f;
 
     void Start()
@@ -68,7 +67,7 @@ public class PlayerHandler : MonoBehaviour
             curHealth -= 5;
             damaged = true;
         }
-
+        //Camera.State.RawPosition.y -= controller[character].gameObject.y;
 
         //Player is Damaged
         if (damaged && !isDead)
@@ -93,31 +92,36 @@ public class PlayerHandler : MonoBehaviour
         {
             controller[character].Jump(jumpHeight[character]);
         }
-
-        controller[character].Climb(vertical * climbSpeed[character]);
+        //Adds the movement to the selected charatcter
         controller[character].Move(horizontal * moveSpeed[character]);
-
+        //If E is pushed run change chararcter
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (character >= controller.Length - 1)
-            {
-                character = 0;
-            }
-            else
-            {
-                character++;
-            }
-            characternames.text = names[character];
-            Camera.Follow = controller[character].gameObject.transform;
+            ChangeCharacter();
         }
+        //Move the camera lock object on to current characters location
+        Camera.transform.position = new Vector3(controller[character].gameObject.transform.position.x, Camera.transform.position.y, Camera.transform.position.z);
     }
 
+    //Changes character
+    public void ChangeCharacter()
+    {
+        //If character is over the ammout of characters that exist set character back to 0, else go to next character
+        if (character >= controller.Length - 1)
+        {
+            character = 0;
+        }
+        else
+        {
+            character++;
+        }
+        //Switch sprite for button in the corner
+        logoswitch.sprite = logo[character];
+    }
 
     void UpdateHeart()
     {
-
         //for all the hearts in heart slots        
-
         for (int i = 0; i < heartSlots.Length; i++)
         {
             if (curHealth >= (healthPerSection * 5) + healthPerSection * 5 * i)
@@ -132,9 +136,9 @@ public class PlayerHandler : MonoBehaviour
 
     }
 
+    //Damages characters health
     public void Damage()
-    {
-
+    { 
         if (damageTimer <= 0)
         {
             curHealth -= 5;
@@ -161,8 +165,6 @@ public class PlayerHandler : MonoBehaviour
     {
         isDead = false;
         curHealth = maxHealth;
-        //curMana = maxMana;
-        ///curStamina = maxStamina;
 
         //move and rotate spawn location
         this.transform.position = curCheckPoint.position;
@@ -175,7 +177,6 @@ public class PlayerHandler : MonoBehaviour
         if (other.gameObject.CompareTag("CheckPoint"))
         {
             curCheckPoint = other.transform;
-            //saveAndLoad.Save();
         }
     }
 
