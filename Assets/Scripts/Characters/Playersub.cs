@@ -32,7 +32,6 @@ public class Playersub : MonoBehaviour
         if (col.CompareTag("Item"))
         {
             Destroy(col.gameObject);
-            GameManager.Instance.AddScore(1);
         }
         if (col.CompareTag("Switch"))
         {

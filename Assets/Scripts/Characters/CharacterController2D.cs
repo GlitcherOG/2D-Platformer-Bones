@@ -19,7 +19,6 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float m_GroundedRadius = .05f;                      // Radius of the overlap circle to determine if grounded
     [SerializeField] private float m_FrontCheckRadius = .05f;                      // Radius of the overlap circle to determine if front is blocked
     [SerializeField] private float m_GroundRayLength = .2f;                     // Length of the ray beneith controller
-    [SerializeField] private float m_LadderRayLength = .5f;                     // Length of the ray above controller
 
     
     private float m_OriginalGravityScale;
