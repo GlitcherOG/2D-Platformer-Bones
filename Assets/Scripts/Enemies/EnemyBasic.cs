@@ -13,12 +13,16 @@ public class EnemyBasic : MonoBehaviour
     public float waypointDistance = 0.6f;
     public float speed = 1f;
 
-    public Transform enemy;
+    public bool facingRight;
+    public SpriteRenderer spriteRenderer;
+    public GameObject enemy;
     public Animator anim;
+    public float delayTime = 1f;
     // Start is called before the first frame update
     void Start()
     {
         points = waypointParent.GetComponentsInChildren<Transform>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnDrawGizmos()
@@ -48,10 +52,25 @@ public class EnemyBasic : MonoBehaviour
         // Get current waypoint
         Transform currentPoint = points[currentWaypoint];
 
+
+
         //Move towards current waypoint
         transform.position = Vector3.MoveTowards(transform.position, currentPoint.position, speed * Time.deltaTime);
+        
+        if (currentPoint.position.x > transform.position.x)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+        }
+
+
         //Check if distance between waypoint is close
         float distance = Vector3.Distance(transform.position, currentPoint.position);
+
+
         //Switch to next waypoint
         if (distance < waypointDistance)
         {
@@ -63,8 +82,17 @@ public class EnemyBasic : MonoBehaviour
             currentWaypoint = 1;
         }
 
-
+        
         //
     }
+
+
+    public void EnemyDie()
+    {
+        //set death animation
+        //new WaitForSeconds(delayTime);
+        Destroy(this);
+    }
+
 }
 

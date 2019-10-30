@@ -287,11 +287,7 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  m_WhatIsLadder:
-    serializedVersion: 2
-    m_Bits: 512
   m_GroundCheck: {fileID: 24393860}
-  m_LadderCheck: {fileID: 1776572901}
   m_FrontCheck: {fileID: 512036977}
   m_GroundedRadius: 0.05
   m_FrontCheckRadius: 0.05
@@ -311,7 +307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 222681152}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06, y: -0.18926987, z: 0.019076005}
+  m_LocalPosition: {x: -0.3, y: -0.18926987, z: 0.019076005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1776572901}
@@ -764,6 +760,7 @@ GameObject:
   - component: {fileID: 485111297}
   - component: {fileID: 485111296}
   - component: {fileID: 485111295}
+  - component: {fileID: 485111298}
   m_Layer: 0
   m_Name: slimeWalkF1
   m_TagString: Untagged
@@ -852,6 +849,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &485111298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485111294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f524419b4cd62d409c381ab5c66fe6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onExit:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onInteract:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  hitTag: Projectile
 --- !u!1 &512036976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,11 +1293,7 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  m_WhatIsLadder:
-    serializedVersion: 2
-    m_Bits: 512
   m_GroundCheck: {fileID: 801624393}
-  m_LadderCheck: {fileID: 857176416}
   m_FrontCheck: {fileID: 1663154284}
   m_GroundedRadius: 0.05
   m_FrontCheckRadius: 0.05
@@ -7518,15 +7555,8 @@ MonoBehaviour:
   - 3
   - 3
   - 3
-  climbSpeed:
-  - 5
-  - 5
-  - 5
-  names:
-  - Bob
-  - Eve
-  - John
-  characternames: {fileID: 1901804510}
+  logo: []
+  logoswitch: {fileID: 0}
   curHealth: 25
   maxHealth: 25
   heartSlots:
@@ -7548,7 +7578,7 @@ MonoBehaviour:
   - {fileID: 844149146}
   - {fileID: 222681153}
   - {fileID: 2013836391}
-  Camera: {fileID: 1293473791}
+  Camera: {fileID: 0}
   portalDistance: 1
 --- !u!82 &1579306712
 AudioSource:
@@ -8341,11 +8371,7 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 1
-  m_WhatIsLadder:
-    serializedVersion: 2
-    m_Bits: 512
   m_GroundCheck: {fileID: 1904914661}
-  m_LadderCheck: {fileID: 242062781}
   m_FrontCheck: {fileID: 678076567}
   m_GroundedRadius: 0.05
   m_FrontCheckRadius: 0.05
@@ -8743,6 +8769,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1122814832934561337, guid: 3b6619b225695864c80766daf5ff0099,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1454422664258474426}
+    - target: {fileID: 1122814832934561337, guid: 3b6619b225695864c80766daf5ff0099,
+        type: 3}
+      propertyPath: onEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnemyDie
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1080043517648795189, guid: 3b6619b225695864c80766daf5ff0099, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3b6619b225695864c80766daf5ff0099, type: 3}
@@ -8773,8 +8809,11 @@ MonoBehaviour:
   waypointParent: {fileID: 1350997994}
   waypointDistance: 0.1
   speed: 0.3
-  enemy: {fileID: 1454422664258474418}
+  facingRight: 0
+  spriteRenderer: {fileID: 0}
+  enemy: {fileID: 0}
   anim: {fileID: 1454422664258474421}
+  delayTime: 1
 --- !u!95 &1454422664258474421 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1454422664789472127, guid: 3b6619b225695864c80766daf5ff0099,
@@ -8858,6 +8897,18 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   hitTag: Player
+--- !u!114 &1454422664258474426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8729102856530576939, guid: 3b6619b225695864c80766daf5ff0099,
+    type: 3}
+  m_PrefabInstance: {fileID: 1454422664258474417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1454422664258474419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec57ca40a28f14d44a2d299cddcba535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1896506755008388889
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ TagManager:
   - Portal
   - Switch
   - Spike
+  - Projectile
   layers:
   - Default
   - TransparentFX
