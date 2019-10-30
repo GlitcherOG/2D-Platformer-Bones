@@ -62,11 +62,11 @@ public class PlayerHandler : MonoBehaviour
         }
 
         //Test Damage
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            curHealth -= 5;
-            damaged = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+            //curHealth -= 5;
+          //  damaged = true;
+        //}
         //Camera.State.RawPosition.y -= controller[character].gameObject.y;
 
         //Player is Damaged
@@ -77,7 +77,7 @@ public class PlayerHandler : MonoBehaviour
         }
         else
         {
-            damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+            //damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
 
         if (damageTimer > 0)
