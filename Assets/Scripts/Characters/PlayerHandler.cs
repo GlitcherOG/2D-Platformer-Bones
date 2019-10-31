@@ -95,7 +95,7 @@ public class PlayerHandler : MonoBehaviour
         Camera.transform.position = new Vector3(controller[character].gameObject.transform.position.x, Camera.transform.position.y, Camera.transform.position.z);
     }
 
-    //Changes character
+    //Changes the current character
     public void ChangeCharacter()
     {
         //If character is over the ammout of characters that exist set character back to 0, else go to next character
