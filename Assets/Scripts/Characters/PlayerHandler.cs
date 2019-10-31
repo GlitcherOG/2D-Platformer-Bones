@@ -61,14 +61,6 @@ public class PlayerHandler : MonoBehaviour
             Death();
         }
 
-        //Test Damage
-        //if (Input.GetKeyDown(KeyCode.X))
-        //{
-            //curHealth -= 5;
-          //  damaged = true;
-        //}
-        //Camera.State.RawPosition.y -= controller[character].gameObject.y;
-
         //Player is Damaged
         if (damaged && !isDead)
         {

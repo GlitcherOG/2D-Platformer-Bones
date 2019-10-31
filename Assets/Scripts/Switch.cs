@@ -5,7 +5,6 @@ using UnityEngine;
 public class Switch : MonoBehaviour
 {
     public bool toggle;
-    public bool oneTime;
     public Sprite[] states;
     public SpriteRenderer currentState;
     // Start is called before the first frame update/
@@ -13,19 +12,12 @@ public class Switch : MonoBehaviour
     {
         currentState = GetComponent<SpriteRenderer>();
     }
-    public void toggleSwitch()
+
+    void Update()
     {
-        if (oneTime == false)
-        {
-            toggle = !toggle;
-        }
-        else if (toggle == false)
-        {
-            toggle = true;
-        }
         if (toggle == true)
         {
-            currentState.sprite = states[1];
+            currentState.sprite = states[states.Length - 1];
         }
         else
         {
@@ -33,4 +25,16 @@ public class Switch : MonoBehaviour
         }
     }
 
+    public void toggleSwitch()
+    {
+        toggle = true;
+        if (toggle == true)
+        {
+            currentState.sprite = states[states.Length-1];
+        }
+        else
+        {
+            currentState.sprite = states[0];
+        }
+    }
 }
