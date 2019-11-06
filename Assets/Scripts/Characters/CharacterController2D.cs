@@ -3,22 +3,18 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-    /* 
-     * --- C# TIP ---
-     * Use SerializeField to expose private variables
-     * Private variables are not accessible through other scripts but will display in the Inspector
-    */
+   //RECOMMENT ALL THIS CODE
 
     // Member Variables
-    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
-    [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping
-    [SerializeField] private bool m_StickToSlopes = true;                         // Whether or not a player can stick to slopes
-    [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
-    [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
-    [SerializeField] private Transform m_FrontCheck;                            // A position makring where to check if the player is not hitting anything
-    [SerializeField] private float m_GroundedRadius = .05f;                      // Radius of the overlap circle to determine if grounded
-    [SerializeField] private float m_FrontCheckRadius = .05f;                      // Radius of the overlap circle to determine if front is blocked
-    [SerializeField] private float m_GroundRayLength = .2f;                     // Length of the ray beneith controller
+    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f; 
+    [SerializeField] private bool m_AirControl = false;                        
+    [SerializeField] private bool m_StickToSlopes = true;                       
+    [SerializeField] private LayerMask m_WhatIsGround;                          
+    [SerializeField] private Transform m_GroundCheck;                           
+    [SerializeField] private Transform m_FrontCheck;                           
+    [SerializeField] private float m_GroundedRadius = .05f;                    
+    [SerializeField] private float m_FrontCheckRadius = .05f;                      
+    [SerializeField] private float m_GroundRayLength = .2f;                     
 
     
     private float m_OriginalGravityScale;
@@ -26,7 +22,6 @@ public class CharacterController2D : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnLandEvent;
 
-    // Public Getters / Setters (Parameters)
     public bool IsGrounded { get; private set; }
     public bool IsFrontBlocked { get; private set; }
     public bool IsFacingRight { get; private set; } = true;
@@ -46,7 +41,6 @@ public class CharacterController2D : MonoBehaviour
     }
 
 
-    // Internal Methods
     private void Awake()
     {
         Rigidbody = GetComponent<Rigidbody2D>();
@@ -75,8 +69,6 @@ public class CharacterController2D : MonoBehaviour
         IsGrounded = false;
         IsFrontBlocked = false;
 
-        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, m_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -113,41 +105,36 @@ public class CharacterController2D : MonoBehaviour
 
     public void Flip()
     {
-        // Switch the way the player is labelled as facing.
         IsFacingRight = !IsFacingRight;
 
-        // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
     }
     
-    // >> Custom methods go here <<
     public void Jump(float height)
     {
         if (!IsGrounded && dJump == true && temp == false)
         {
             temp = true;
-            // Add a vertical force to the player.
             IsGrounded = false;
             Rigidbody.AddForce(new Vector2(0f, height+Rigidbody.velocity.y), ForceMode2D.Impulse);
         }
-        // If the player should jump...
+
         if (IsGrounded && temp==false)
         {
-            // Add a vertical force to the player.
+
             IsGrounded = false;
             Rigidbody.AddForce(new Vector2(0f, height + Rigidbody.velocity.y), ForceMode2D.Impulse);
         }
     }
     
-    // Move must be called last!
+
     public void Move(float offsetX)
     {
         if (HasParameter("IsRunning", Anim))
             Anim.SetBool("IsRunning", offsetX != 0);
 
-        //only control the player if grounded or airControl is turned on
         if (IsGrounded || m_AirControl)
         {
             if (m_StickToSlopes)
@@ -170,23 +157,22 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
 
-            // Move the character by finding the target velocity
+
             Vector3 targetVelocity = new Vector2(offsetX, Rigidbody.velocity.y);
 
             Vector3 velocity = Vector3.zero;
-            // And then smoothing it out and applying it to the character
+
             Rigidbody.velocity = Vector3.SmoothDamp(Rigidbody.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
 
-            // If the input is moving the player right and the player is facing left...
+
             if (offsetX > 0 && !IsFacingRight)
             {
-                // ... flip the player.
                 Flip();
             }
-            // Otherwise if the input is moving the player left and the player is facing right...
+
             else if (offsetX < 0 && IsFacingRight)
             {
-                // ... flip the player.
+
                 Flip();
             }
         }

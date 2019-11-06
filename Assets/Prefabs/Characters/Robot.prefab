@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 966401408850596601}
   - component: {fileID: 966401408850596602}
   - component: {fileID: 966401408850596603}
+  - component: {fileID: 1436117422}
   m_Layer: 0
   m_Name: Robot
   m_TagString: Player
@@ -200,6 +201,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1436117422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966401408850596598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa03894bdfa7a64b9187027a0783115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 8873641351614948021, guid: dbc0e2614a8610840960720cf769ed19,
+    type: 3}
+  projectileSpeed: 5
 --- !u!1 &966401410598161777
 GameObject:
   m_ObjectHideFlags: 0

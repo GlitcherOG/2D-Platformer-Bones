@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Playersub : MonoBehaviour
 {
-
-    private GameObject currentPortal;
     public Switch switchTog;
-    public float portalDistance = 1f;
     public CharacterController2D controller;
 
     private void Start()
