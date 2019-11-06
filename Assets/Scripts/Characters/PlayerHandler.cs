@@ -14,6 +14,7 @@ public class PlayerHandler : MonoBehaviour
     public float[] jumpHeight;
     public Sprite[] logo;
     public Image logoswitch;
+    public Projectile2 arrow;
 
     [Header("Value Variables")]
     public float curHealth;
@@ -49,8 +50,6 @@ public class PlayerHandler : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         healthPerSection = (maxHealth / (heartSlots.Length) * .2f);
     }
-
-    // Update is called once per frame
     void Update()
     {
         UpdateHeart();
@@ -106,6 +105,14 @@ public class PlayerHandler : MonoBehaviour
         else
         {
             character++;
+        }
+        if (character == 1)
+        {
+            arrow.enabled = true;
+        }
+        else
+        {
+            arrow.enabled = false;
         }
         //Switch sprite for button in the corner
         logoswitch.sprite = logo[character];
