@@ -16,7 +16,7 @@ public class Playersub : MonoBehaviour
     {
         if (switchTog != null)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetAxisRaw("Interact") > 0)
             {
                 switchTog.toggleSwitch();
             }
