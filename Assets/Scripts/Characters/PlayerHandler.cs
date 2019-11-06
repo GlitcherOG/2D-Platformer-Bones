@@ -13,6 +13,7 @@ public class PlayerHandler : MonoBehaviour
     public float[] moveSpeed;
     public float[] jumpHeight;
     public Sprite[] logo;
+    public Collider2D[] col;
     public Image logoswitch;
     public Projectile2 arrow;
 
@@ -53,6 +54,7 @@ public class PlayerHandler : MonoBehaviour
     void Update()
     {
         UpdateHeart();
+
 
         //Player is Dead
         if (curHealth <= 0 && !isDead)
@@ -113,6 +115,22 @@ public class PlayerHandler : MonoBehaviour
         else
         {
             arrow.enabled = false;
+        }
+        for (int i = 0; i < controller.Length; i++)
+        {
+            if (i != character)
+            {
+                if (controller[i].IsGrounded == true)
+                {
+                    col[i].enabled = false;
+                    col[i].attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
+                }
+            }
+            else
+            {
+                col[i].enabled = true;
+                col[i].attachedRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+            }
         }
         //Switch sprite for button in the corner
         logoswitch.sprite = logo[character];

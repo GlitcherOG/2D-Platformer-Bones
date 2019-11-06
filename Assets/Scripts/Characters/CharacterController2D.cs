@@ -22,7 +22,7 @@ public class CharacterController2D : MonoBehaviour
     [Header("Events")]
     public UnityEvent OnLandEvent;
 
-    public bool IsGrounded { get; private set; }
+    public bool IsGrounded;
     public bool IsFrontBlocked { get; private set; }
     public bool IsFacingRight { get; private set; } = true;
     public Rigidbody2D Rigidbody { get; private set; }
