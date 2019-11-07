@@ -57,6 +57,8 @@ public class PlayerHandler : MonoBehaviour
     {
         playerAudio = GetComponent<AudioSource>();
         healthPerSection = (maxHealth / (heartSlots.Length) * .2f);
+        arrow.enabled = false;
+        StartCoroutine(PosFix());
     }
     void Update()
     {
@@ -130,7 +132,7 @@ public class PlayerHandler : MonoBehaviour
                 if (character[i].controller.IsGrounded == true)
                 {
                     character[i].col.enabled = false;
-                    character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
+                    character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
                 }
             }
             else
@@ -185,6 +187,15 @@ public class PlayerHandler : MonoBehaviour
 
     }
 
+    IEnumerator PosFix()
+    {
+        yield return new WaitForSeconds(0.1f);
+        for (int i = 1; i < character.Length; i++)
+        {
+            character[i].col.enabled = false;
+            character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
     void Revive()
     {
         isDead = false;

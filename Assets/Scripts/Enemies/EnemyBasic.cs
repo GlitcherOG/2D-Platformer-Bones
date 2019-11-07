@@ -9,10 +9,10 @@ public class EnemyBasic : MonoBehaviour
 
     private Transform[] points;
     private int currentWaypoint = 1;
-
+    bool dying = false;
     public float waypointDistance = 0.6f;
     public float speed = 1f;
-
+    public bool dead;
     public bool facingRight;
     public SpriteRenderer spriteRenderer;
     public GameObject enemy;
@@ -41,7 +41,7 @@ public class EnemyBasic : MonoBehaviour
 
             for (int i = 1; i < points.Length; i++)
             {
-                Gizmos.DrawSphere(points[i].position, waypointDistance);
+                Gizmos.DrawSphere(points[i].position, 0.2f);
             }
         }
     }
@@ -52,11 +52,18 @@ public class EnemyBasic : MonoBehaviour
         // Get current waypoint
         Transform currentPoint = points[currentWaypoint];
 
+        if(dead==true)
+        {
+            Destroy(this.gameObject);
+        }
+
+        if (dying == false)
+        {
+            //Move towards current waypoint
+            transform.position = Vector3.MoveTowards(transform.position, currentPoint.position, speed * Time.deltaTime);
+        }
 
 
-        //Move towards current waypoint
-        transform.position = Vector3.MoveTowards(transform.position, currentPoint.position, speed * Time.deltaTime);
-        
         if (currentPoint.position.x > transform.position.x)
         {
             spriteRenderer.flipX = true;
@@ -70,7 +77,6 @@ public class EnemyBasic : MonoBehaviour
         //Check if distance between waypoint is close
         float distance = Vector3.Distance(transform.position, currentPoint.position);
 
-
         //Switch to next waypoint
         if (distance < waypointDistance)
         {
@@ -81,18 +87,15 @@ public class EnemyBasic : MonoBehaviour
         {
             currentWaypoint = 1;
         }
-
-        
-        //
     }
 
-
-    public void EnemyDie()
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-        //set death animation
-        //new WaitForSeconds(delayTime);
-        Destroy(this);
+        if(collision.tag == "Projectile")
+        {
+            dying = true;
+            anim.SetTrigger("Dead");
+        }
     }
-
 }
 

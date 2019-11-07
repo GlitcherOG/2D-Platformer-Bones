@@ -6,6 +6,7 @@ public class PlayerInteractability : MonoBehaviour
 {
     public Switch switchTog;
     public CharacterController2D controller;
+    public bool attack;
 
     private void Start()
     {
@@ -20,6 +21,14 @@ public class PlayerInteractability : MonoBehaviour
             {
                 switchTog.toggleSwitch();
             }
+            if (Input.GetButtonDown("Shift"))
+            {
+                attack = true;
+            }
+            if (Input.GetButtonUp("Shift"))
+            {
+                attack = false;
+            }
         }
     }
 
@@ -33,6 +42,10 @@ public class PlayerInteractability : MonoBehaviour
         if (col.CompareTag("Switch"))
         {
             switchTog = col.gameObject.GetComponent<Switch>();
+        }
+        if (col.CompareTag("Enemy"))
+        {
+
         }
     }
 

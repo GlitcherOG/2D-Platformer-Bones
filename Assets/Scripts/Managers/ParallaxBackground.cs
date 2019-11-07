@@ -16,7 +16,7 @@ public class ParallaxBackground : MonoBehaviour
     private Transform[] layers;
 
     // Multiplier to help manage when the image is moved
-    private float viewZone = 6;
+    private float viewZone = 4;
 
     // The array index of the far left side image panel
     private int leftIndex;

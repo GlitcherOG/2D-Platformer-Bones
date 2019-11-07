@@ -5,8 +5,8 @@ using System;
 public class ProjectileHandler : MonoBehaviour
 {
     string[] tags = new string[] { "Player", "Projectile" };
-    GameObject stuckObject;
-    bool stuck;
+    public GameObject stuckObject;
+    public bool stuck;
 
     void Update()
     {
@@ -21,26 +21,23 @@ public class ProjectileHandler : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         stuck = true;
-        for (int i = 0; i < tags.Length; i++)
+        if (stuckObject == null)
         {
-            if (collision.tag == tags[i])
+            for (int i = 0; i < tags.Length; i++)
             {
-                i = tags.Length;
-                stuck = false;
+                if (collision.tag == tags[i])
+                {
+                    i = tags.Length;
+                    stuck = false;
+                }
             }
-        }
-        if(stuck)
-        {
-            stuck = collision.gameObject;
-            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject == stuckObject)
-        {
-            stuck = false;
-            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+            if (stuck)
+            {
+                stuck = collision.gameObject;
+                gameObject.transform.SetParent(collision.gameObject.transform);
+                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+                gameObject.GetComponent<Collider2D>().enabled = false;
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Switch
   - Spike
   - Projectile
+  - Enemy
   layers:
   - Default
   - TransparentFX
