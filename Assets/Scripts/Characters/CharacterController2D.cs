@@ -27,6 +27,8 @@ public class CharacterController2D : MonoBehaviour
     public bool IsFacingRight { get; private set; } = true;
     public Rigidbody2D Rigidbody { get; private set; }
     public Animator Anim { get; private set; }
+
+    [Header("Abilites")]
     public bool dJump;
     private bool temp;
 

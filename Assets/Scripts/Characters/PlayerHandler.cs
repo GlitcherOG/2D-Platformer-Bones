@@ -9,11 +9,19 @@ using Cinemachine;
 public class PlayerHandler : MonoBehaviour
 {
     [Header("Character Variables")]
-    public int character;
-    public float[] moveSpeed;
-    public float[] jumpHeight;
-    public Sprite[] logo;
-    public Collider2D[] col;
+    public int characterSelected;
+    [System.Serializable]
+    public struct Character
+    {
+        public string name;
+        public CharacterController2D controller;
+        public float moveSpeed;
+        public float jumpHeight;
+        public Sprite logo;
+        public Collider2D col;
+    };
+
+    public Character[] character; //= new Character[3];
     public Image logoswitch;
     public Projectile2 arrow;
 
@@ -42,9 +50,8 @@ public class PlayerHandler : MonoBehaviour
     private float damageTimer;
 
     [Header("Camera")]
-    public CharacterController2D[] controller;
+    //public CharacterController2D[] controller;
     public GameObject Camera;
-    public float portalDistance = 1f;
 
     void Start()
     {
@@ -83,32 +90,32 @@ public class PlayerHandler : MonoBehaviour
 
         if (isJumping)
         {
-            controller[character].Jump(jumpHeight[character]);
+            character[characterSelected].controller.Jump(character[characterSelected].jumpHeight);
         }
         //Adds the movement to the selected charatcter
-        controller[character].Move(horizontal * moveSpeed[character]);
+        character[characterSelected].controller.Move(horizontal * character[characterSelected].moveSpeed);
         //If E is pushed run change chararcter
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetButtonDown("Switch"))
         {
             ChangeCharacter();
         }
         //Move the camera lock object on to current characters location
-        Camera.transform.position = new Vector3(controller[character].gameObject.transform.position.x, Camera.transform.position.y, Camera.transform.position.z);
+        Camera.transform.position = new Vector3(character[characterSelected].controller.gameObject.transform.position.x, Camera.transform.position.y, Camera.transform.position.z);
     }
 
     //Changes the current character
     public void ChangeCharacter()
     {
         //If character is over the ammout of characters that exist set character back to 0, else go to next character
-        if (character >= controller.Length - 1)
+        if (characterSelected >= character.Length - 1)
         {
-            character = 0;
+            characterSelected = 0;
         }
         else
         {
-            character++;
+            characterSelected++;
         }
-        if (character == 1)
+        if (characterSelected == 1)
         {
             arrow.enabled = true;
         }
@@ -116,24 +123,24 @@ public class PlayerHandler : MonoBehaviour
         {
             arrow.enabled = false;
         }
-        for (int i = 0; i < controller.Length; i++)
+        for (int i = 0; i < character.Length; i++)
         {
-            if (i != character)
+            if (i != characterSelected)
             {
-                if (controller[i].IsGrounded == true)
+                if (character[i].controller.IsGrounded == true)
                 {
-                    col[i].enabled = false;
-                    col[i].attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
+                    character[i].col.enabled = false;
+                    character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition;
                 }
             }
             else
             {
-                col[i].enabled = true;
-                col[i].attachedRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+                character[i].col.enabled = true;
+                character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
             }
         }
         //Switch sprite for button in the corner
-        logoswitch.sprite = logo[character];
+        logoswitch.sprite = character[characterSelected].logo;
     }
 
     void UpdateHeart()

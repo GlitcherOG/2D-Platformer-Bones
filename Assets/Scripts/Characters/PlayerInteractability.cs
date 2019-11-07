@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Playersub : MonoBehaviour
+public class PlayerInteractability : MonoBehaviour
 {
     public Switch switchTog;
     public CharacterController2D controller;
@@ -16,7 +16,7 @@ public class Playersub : MonoBehaviour
     {
         if (switchTog != null)
         {
-            if (Input.GetAxisRaw("Interact") > 0)
+            if (Input.GetButtonDown("Interact"))
             {
                 switchTog.toggleSwitch();
             }
