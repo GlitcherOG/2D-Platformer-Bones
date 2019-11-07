@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_FrontCheck;                           
     [SerializeField] private float m_GroundedRadius = .05f;                    
     [SerializeField] private float m_FrontCheckRadius = .05f;                      
-    [SerializeField] private float m_GroundRayLength = .2f;                     
+    [SerializeField] private float m_GroundRayLength = .5f;                     
 
     
     private float m_OriginalGravityScale;
@@ -82,6 +82,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
+
         colliders = Physics2D.OverlapCircleAll(m_FrontCheck.position, m_FrontCheckRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -143,6 +144,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 Ray groundRay = new Ray(transform.position, Vector3.down);
                 RaycastHit2D groundHit = Physics2D.Raycast(groundRay.origin, groundRay.direction, m_GroundRayLength, m_WhatIsGround);
+                transform.SetParent(groundHit.collider.gameObject.transform);
                 if (groundHit.collider != null)
                 {
                     Vector3 slopeDirection = Vector3.Cross(Vector3.up, Vector3.Cross(Vector3.up, groundHit.normal));
@@ -159,7 +161,6 @@ public class CharacterController2D : MonoBehaviour
                 }
             }
 
-
             Vector3 targetVelocity = new Vector2(offsetX, Rigidbody.velocity.y);
 
             Vector3 velocity = Vector3.zero;
@@ -174,7 +175,6 @@ public class CharacterController2D : MonoBehaviour
 
             else if (offsetX < 0 && IsFacingRight)
             {
-
                 Flip();
             }
         }

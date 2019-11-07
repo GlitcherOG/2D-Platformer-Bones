@@ -108,6 +108,7 @@ public class PlayerHandler : MonoBehaviour
     //Changes the current character
     public void ChangeCharacter()
     {
+        character[characterSelected].controller.Move(0);
         //If character is over the ammout of characters that exist set character back to 0, else go to next character
         if (characterSelected >= character.Length - 1)
         {
@@ -129,15 +130,13 @@ public class PlayerHandler : MonoBehaviour
         {
             if (i != characterSelected)
             {
-                if (character[i].controller.IsGrounded == true)
-                {
-                    character[i].col.enabled = false;
-                    character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-                }
+                StartCoroutine(GroundTest(i));
             }
             else
             {
                 character[i].col.enabled = true;
+                //character[i].col.attachedRigidbody.isKinematic = false;
+                character[i].col.attachedRigidbody.gravityScale = 1;
                 character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
             }
         }
@@ -153,13 +152,32 @@ public class PlayerHandler : MonoBehaviour
             if (curHealth >= (healthPerSection * 5) + healthPerSection * 5 * i)
             {
                 heartSlots[i].sprite = heartSprites[0];
-            }            
+            }
             else
             {
                 heartSlots[i].sprite = heartSprites[1];
             }
         }
 
+    }
+
+    IEnumerator GroundTest(int charTest)
+    {
+        yield return new WaitUntil(() => character[charTest].controller.IsGrounded);
+        if (character[charTest].controller.IsGrounded)
+        {
+            character[charTest].col.enabled = false;
+            character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+            StartCoroutine(UnfreezeGround(charTest));
+            //character[charTest].col.attachedRigidbody.isKinematic = true;
+        }
+    }
+
+    IEnumerator UnfreezeGround(int charTest)
+    {
+        yield return new WaitForSeconds(0.1f);
+        character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+        character[charTest].col.attachedRigidbody.gravityScale = 0;
     }
 
     //Damages characters health
@@ -194,6 +212,7 @@ public class PlayerHandler : MonoBehaviour
         {
             character[i].col.enabled = false;
             character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+            //character[i].col.attachedRigidbody.isKinematic = true;
         }
     }
     void Revive()
