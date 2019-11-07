@@ -5,15 +5,19 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     
-    // Start is called before the first frame update
+    // A laser prefab that shoots directly down (is visual only)
     void Start()
     {
-        this.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";
+        //move the component to the forground as it's a background visual object and does not interact
+        this.GetComponent<SpriteRenderer>().sortingLayerName = "Foreground";        
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        // move the laser down
         transform.Translate((Vector3.down * Time.deltaTime) * 4);
+        //(the prefab is destroyed after a few seconds in the shoot script)
     }
+
 }

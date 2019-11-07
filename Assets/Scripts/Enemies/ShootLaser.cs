@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShootLaser : MonoBehaviour
 {
     //Prefeab of laser asset
-    public Transform laserPrefab;
+    public GameObject laserPrefab;
     //position to instanciate laser
     public Transform startPosition;
 
@@ -17,10 +17,12 @@ public class ShootLaser : MonoBehaviour
 
     private IEnumerator Zap()
     {
-        yield return new WaitForSeconds(5f);
         //new GameObject("Laser").AddComponent<Fractal>().Initialize(this, i);
-        Transform laser = Instantiate(laserPrefab);
-        laser.position = startPosition.position;
+        GameObject laser = Instantiate(laserPrefab);
+        laser.transform.position = startPosition.position;
+        yield return new WaitForSeconds(5f);
         StartCoroutine(Zap());
+        Destroy(laser);
+
     }
 }
