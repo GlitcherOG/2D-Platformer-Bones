@@ -4,35 +4,24 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    public bool toggle;
-    public Sprite[] states;
-    public SpriteRenderer currentState;
-    // Start is called before the first frame update/
+    public bool toggle; //Switch state bool
+    public Sprite[] states; //Diffrent sprite states
+    public SpriteRenderer currentState; //current sprite renderer
+
     private void Start()
     {
+        //Get the component sprite renderer
         currentState = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    public void toggleSwitch(bool toggle = true)
     {
-        if (toggle == true)
-        {
-            currentState.sprite = states[states.Length - 1];
-        }
-        else
-        {
-            currentState.sprite = states[0];
-        }
-    }
-
-    public void toggleSwitch()
-    {
-        toggle = true;
-        if (toggle == true)
+        //If toggle is true change the sprite to last sprite
+        if (toggle == true) 
         {
             currentState.sprite = states[states.Length-1];
         }
-        else
+        else //else change the sprite to the off state
         {
             currentState.sprite = states[0];
         }

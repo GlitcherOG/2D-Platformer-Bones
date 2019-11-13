@@ -6,17 +6,17 @@ public class CharacterController2D : MonoBehaviour
    //RECOMMENT ALL THIS CODE
 
     // Member Variables
-    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f; 
-    [SerializeField] private bool m_AirControl = false;                        
-    [SerializeField] private bool m_StickToSlopes = true;                       
+    [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f; //Movement smoothing for the charactor
+    [SerializeField] private bool m_AirControl = false; //Allow control for character in the air
+    [SerializeField] private bool m_StickToSlopes = true; //Sitck to slopes to allow for easier controls
     [SerializeField] private LayerMask m_WhatIsGround;                          
-    [SerializeField] private Transform m_GroundCheck;                           
-    [SerializeField] private Transform m_FrontCheck;                           
-    [SerializeField] private float m_GroundedRadius = .05f;                    
-    [SerializeField] private float m_FrontCheckRadius = .05f;                      
-    [SerializeField] private float m_GroundRayLength = .5f;                     
+    [SerializeField] private Transform m_GroundCheck; //Ground check gameobject
+    [SerializeField] private Transform m_FrontCheck;  //Front check gameobject
+    [SerializeField] private float m_GroundedRadius = .05f;//Radius for ground check               
+    [SerializeField] private float m_FrontCheckRadius = .05f;//Radius for front check  
+    [SerializeField] private float m_GroundRayLength = .5f;//Radius for ground ray length check  
 
-    
+
     private float m_OriginalGravityScale;
     
     [Header("Events")]
@@ -45,8 +45,11 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
+        //Get rigidbody component and set into variable
         Rigidbody = GetComponent<Rigidbody2D>();
+        //Get animator component and set into variable
         Anim = GetComponent<Animator>();
+        //Get rigidbody gravity scale and set into a variable 
         m_OriginalGravityScale = Rigidbody.gravityScale;
 
         if (OnLandEvent == null)

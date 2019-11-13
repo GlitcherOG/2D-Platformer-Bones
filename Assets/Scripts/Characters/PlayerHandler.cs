@@ -9,31 +9,30 @@ using Cinemachine;
 public class PlayerHandler : MonoBehaviour
 {
     [Header("Character Variables")]
-    public int characterSelected;
+    public int characterSelected; //Current selected character
     [System.Serializable]
-    public struct Character
+    public struct Character //Character struct containing character varribles
     {
-        public string name;
-        public CharacterController2D controller;
-        public float moveSpeed;
-        public float jumpHeight;
-        public Sprite logo;
-        public Collider2D col;
+        public string name; //Character name
+        public CharacterController2D controller; //Character controller
+        public float moveSpeed; //Character movement speed
+        public float jumpHeight; //Character jump height
+        public Sprite logo; //Character changer logo
+        public Collider2D col; //Collider for character
     };
 
-    public Character[] character; //= new Character[3];
-    public Image logoswitch;
-    public Projectile2 arrow;
+    public Character[] character; //Character struct variable
+    public Image logoswitch; //Character changer image
+    public Projectile2 arrow; //Arrow script variable 
 
     [Header("Value Variables")]
-    public float curHealth;
-    public float maxHealth;
-    private float healthPerSection;
-    private float prevHealth;
+    public float curHealth; //Current characters health
+    public float maxHealth; //Max health that the characters can have
+    private float healthPerSection; //How much health is in one heart section
         
     [Header("Heart Slots")]
-    public Image[] heartSlots;
-    public Sprite[] heartSprites;
+    public Image[] heartSlots; //Heart slots on the cavas
+    public Sprite[] heartSprites; //The sprites for the stages of the heart
 
     [Header("Damage Effect Variables")]
     public Image damageImage;
@@ -44,14 +43,10 @@ public class PlayerHandler : MonoBehaviour
     AudioSource playerAudio;
     static public bool isDead;
     bool damaged;
-
-    [Header("Check Point")]
-    public Transform curCheckPoint;
     private float damageTimer;
 
     [Header("Camera")]
-    //public CharacterController2D[] controller;
-    public GameObject Camera;
+    public GameObject Camera; //Camera object lock gameobject
 
     void Start()
     {
@@ -63,8 +58,6 @@ public class PlayerHandler : MonoBehaviour
     void Update()
     {
         UpdateHeart();
-
-
         //Player is Dead
         if (curHealth <= 0 && !isDead)
         {
@@ -118,6 +111,7 @@ public class PlayerHandler : MonoBehaviour
         {
             characterSelected++;
         }
+        //If selected character is 1 turn on arrow script
         if (characterSelected == 1)
         {
             arrow.enabled = true;
@@ -126,6 +120,7 @@ public class PlayerHandler : MonoBehaviour
         {
             arrow.enabled = false;
         }
+        //For all characters start ground test if not character selected run ground check else turn on the collider, set gravity to one, off rigidbody constraints
         for (int i = 0; i < character.Length; i++)
         {
             if (i != characterSelected)
@@ -135,7 +130,6 @@ public class PlayerHandler : MonoBehaviour
             else
             {
                 character[i].col.enabled = true;
-                //character[i].col.attachedRigidbody.isKinematic = false;
                 character[i].col.attachedRigidbody.gravityScale = 1;
                 character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
             }
@@ -167,9 +161,8 @@ public class PlayerHandler : MonoBehaviour
         if (character[charTest].controller.IsGrounded)
         {
             character[charTest].col.enabled = false;
-            character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+            character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             StartCoroutine(UnfreezeGround(charTest));
-            //character[charTest].col.attachedRigidbody.isKinematic = true;
         }
     }
 
@@ -205,33 +198,33 @@ public class PlayerHandler : MonoBehaviour
 
     }
 
+    //Allows for a moment of physics at start to fix character locations and make it so that object physics
     IEnumerator PosFix()
     {
         yield return new WaitForSeconds(0.1f);
         for (int i = 1; i < character.Length; i++)
         {
             character[i].col.enabled = false;
-            character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
-            //character[i].col.attachedRigidbody.isKinematic = true;
+            character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
     }
-    void Revive()
-    {
-        isDead = false;
-        curHealth = maxHealth;
+    //void Revive()
+    //{
+    //    isDead = false;
+    //    curHealth = maxHealth;
 
-        //move and rotate spawn location
-        this.transform.position = curCheckPoint.position;
-        this.transform.rotation = curCheckPoint.rotation;
-        deathImage.gameObject.GetComponent<Animator>().SetTrigger("Alive");
-    }
+    //    //move and rotate spawn location
+    //    this.transform.position = curCheckPoint.position;
+    //    this.transform.rotation = curCheckPoint.rotation;
+    //    deathImage.gameObject.GetComponent<Animator>().SetTrigger("Alive");
+    //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("CheckPoint"))
-        {
-            curCheckPoint = other.transform;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag("CheckPoint"))
+    //    {
+    //        curCheckPoint = other.transform;
+    //    }
+    //}
 
 }

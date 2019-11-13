@@ -6,11 +6,12 @@ using UnityEngine.Animations;
 
 public class LevelOneEnd : MonoBehaviour
 {
-    public float fadetime;
-    public GameObject endingScene;
-    public Animator anim1;
+    public Animator anim; //Fade out animator
+
+    //On trigger enter start IEnumeraotr ending
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //if collided object has tag Player srun IEnumerator ending 
         if (collision.tag == "Player")
         {
             StartCoroutine(Ending());
@@ -19,8 +20,11 @@ public class LevelOneEnd : MonoBehaviour
 
     IEnumerator Ending()
     {
-        anim1.Play("Ending");
-        yield return new WaitForSeconds(2f);
+        //Play animiaton ending
+        anim.Play("Ending");
+        //Wait for 1.23 seconds
+        yield return new WaitForSeconds(1.23f);
+        //Go to next level
         GameManager.NextLevel();
     }
 
