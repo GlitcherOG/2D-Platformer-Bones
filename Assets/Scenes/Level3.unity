@@ -527,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 486020944305506161, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.3747156
+      value: 7.195825
       objectReference: {fileID: 0}
     - target: {fileID: 486020944305506161, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}
@@ -904,12 +904,12 @@ PrefabInstance:
     - target: {fileID: 1821284269335343613, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: -1324217245
+      value: -287483121
       objectReference: {fileID: 0}
     - target: {fileID: 1821284269335343613, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9ab0b4ea729d54458fe63ba76c6689e, type: 3}
@@ -2354,6 +2354,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basher: {fileID: 1380866913}
+  mass: 100
+  speed: 40000
 --- !u!50 &1380866913 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 486020943553844034, guid: fad7e4eceb5670f44922251a7ad43863,
