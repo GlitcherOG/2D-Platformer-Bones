@@ -527,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 486020944305506161, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.3747156
+      value: 7.195825
       objectReference: {fileID: 0}
     - target: {fileID: 486020944305506161, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}
@@ -904,12 +904,12 @@ PrefabInstance:
     - target: {fileID: 1821284269335343613, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: -1324217245
+      value: -287483121
       objectReference: {fileID: 0}
     - target: {fileID: 1821284269335343613, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9ab0b4ea729d54458fe63ba76c6689e, type: 3}
@@ -2126,8 +2126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfa6f66af8544b478012f279c3d8bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserPrefab: {fileID: 0}
-  startPosition: {fileID: 0}
+  laserPrefab: {fileID: 542678066180054518, guid: 5e26cf36fa729c74abd4e05514ce82b9,
+    type: 3}
+  startPosition: {fileID: 1236020175}
 --- !u!1 &1358010190
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,6 +2139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1358010191}
   - component: {fileID: 1358010192}
+  - component: {fileID: 1358010193}
   m_Layer: 0
   m_Name: Spaceship 512 px (2)
   m_TagString: Untagged
@@ -2208,6 +2210,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1358010193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358010190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfa6f66af8544b478012f279c3d8bb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laserPrefab: {fileID: 542678066180054518, guid: 5e26cf36fa729c74abd4e05514ce82b9,
+    type: 3}
+  startPosition: {fileID: 866759583}
 --- !u!1 &1362089326
 GameObject:
   m_ObjectHideFlags: 0
@@ -2354,6 +2371,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basher: {fileID: 1380866913}
+  maxMass: 100
+  speed: 40000
 --- !u!50 &1380866913 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 486020943553844034, guid: fad7e4eceb5670f44922251a7ad43863,
