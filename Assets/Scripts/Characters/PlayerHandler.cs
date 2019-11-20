@@ -8,6 +8,7 @@ using Cinemachine;
 
 public class PlayerHandler : MonoBehaviour
 {
+    public GameManager gameManager;
     [Header("Character Variables")]
     public int characterSelected; //Current selected character
     [System.Serializable]
@@ -35,22 +36,13 @@ public class PlayerHandler : MonoBehaviour
     public Sprite[] heartSprites; //The sprites for the stages of the heart
 
     [Header("Damage Effect Variables")]
-    public Image damageImage;
-    public Image deathImage;
-    public AudioClip deathClip;
-    public float flashSpeed = 5;
-    public Color flashColour = new Color(1, 0, 0, .2f);
-    AudioSource playerAudio;
-    static public bool isDead;
-    bool damaged;
-    private float damageTimer;
+    private float damageTimer; //How long till character can be damaged again
 
     [Header("Camera")]
     public GameObject Camera; //Camera object lock gameobject
 
     void Start()
     {
-        playerAudio = GetComponent<AudioSource>();
         healthPerSection = (maxHealth / (heartSlots.Length) * .2f);
         //Set variable to false
         arrow.enabled = false;
@@ -61,20 +53,9 @@ public class PlayerHandler : MonoBehaviour
     {
         UpdateHeart();
         //Player is Dead
-        if (curHealth <= 0 && !isDead)
+        if (curHealth <= 0)
         {
             Death();
-        }
-
-        //Player is Damaged
-        if (damaged && !isDead)
-        {
-            damageImage.color = flashColour;
-            damaged = false;
-        }
-        else
-        {
-            //damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
         }
 
         if (damageTimer > 0)
@@ -192,21 +173,19 @@ public class PlayerHandler : MonoBehaviour
 
     //Damages characters health
     public void Damage()
-    { 
+    {
+        //If damage timer is less than zero then remove 5 health and reset timer
         if (damageTimer <= 0)
         {
             curHealth -= 5;
             damageTimer = 1;
         }
-        if(curHealth==0)
-        {
-            Death();
-        }
     }
 
     public void Death()
     {
-        
+        //Restart Level
+        gameManager.Restart();
     }
 
     //Allows for a moment of physics at start to fix character locations and make it so that object physics

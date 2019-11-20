@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
         // get the mouse position in the game
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane *10));
 
-        // 
+        //Make gameobject look at the mouse position
         transform.LookAt(worldMousePos);
 
         if (Input.GetKeyDown(KeyCode.Mouse1))

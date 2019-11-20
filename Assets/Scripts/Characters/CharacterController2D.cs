@@ -20,17 +20,17 @@ public class CharacterController2D : MonoBehaviour
     private float m_OriginalGravityScale;
     
     [Header("Events")]
-    public UnityEvent OnLandEvent;
+    public UnityEvent OnLandEvent; //Unity event for when the character lands
 
-    public bool IsGrounded;
-    public bool IsFrontBlocked { get; private set; }
-    public bool IsFacingRight { get; private set; } = true;
-    public Rigidbody2D Rigidbody { get; private set; }
-    public Animator Anim { get; private set; }
+    public bool IsGrounded; //Is the character grounded
+    public bool IsFrontBlocked { get; private set; } //Is the front of the character blocked
+    public bool IsFacingRight { get; private set; } = true; //Is the character facing right
+    public Rigidbody2D Rigidbody { get; private set; } //Character rigidbody
+    public Animator Anim { get; private set; } //Character animatior
 
     [Header("Abilites")]
-    public bool dJump;
-    private bool temp;
+    public bool dJump; //If the character can double jump
+    private bool temp; //Test variable
 
     public bool HasParameter(string paramName, Animator animator)
     {

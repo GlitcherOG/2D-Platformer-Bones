@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class TriggerEvent : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     public UnityEvent onEnter, OnStay, onExit;
     public UnityEvent onInteract;
     public string hitTag = "Player";
