@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 55628832}
   - component: {fileID: 55628833}
   m_Layer: 0
-  m_Name: Spaceship_1
+  m_Name: SpaceshipPatrol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,7 +187,7 @@ Transform:
   m_LocalScale: {x: 0.4, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 656918576}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &55628830
 Animator:
@@ -527,7 +527,7 @@ PrefabInstance:
     - target: {fileID: 486020944305506161, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.195825
+      value: 3.3497837
       objectReference: {fileID: 0}
     - target: {fileID: 486020944305506161, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}
@@ -543,6 +543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: orthographic size
       value: 4.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 486020944305506060, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: m_AllowMSAA
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 486020943553844034, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}
@@ -831,15 +836,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: EndGameShip
       objectReference: {fileID: 0}
+    - target: {fileID: 1821284269335343614, guid: f9ab0b4ea729d54458fe63ba76c6689e,
+        type: 3}
+      propertyPath: m_TagString
+      value: EndGame
+      objectReference: {fileID: 0}
     - target: {fileID: 1821284269335343615, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.21
+      value: 34.99
       objectReference: {fileID: 0}
     - target: {fileID: 1821284269335343615, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 1821284269335343615, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
@@ -889,12 +899,12 @@ PrefabInstance:
     - target: {fileID: 1821284269335343615, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1821284269335343615, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1821284269335343613, guid: f9ab0b4ea729d54458fe63ba76c6689e,
         type: 3}
@@ -1167,7 +1177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 656918576}
   m_Layer: 0
-  m_Name: Decals
+  m_Name: World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1187,8 +1197,8 @@ Transform:
   - {fileID: 1297745676}
   - {fileID: 1598131750}
   - {fileID: 1358010191}
-  - {fileID: 1683581015}
   - {fileID: 55628829}
+  - {fileID: 1683581015}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1609,6 +1619,31 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 312177467}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &926107308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926107307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0866db54c33694a9ca9102a7e1ef29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &926107309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926107307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b27b7672356b04245aa5c1ed49e1fab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WinPanel: {fileID: 0}
 --- !u!4 &926107311 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1821284269335343615, guid: f9ab0b4ea729d54458fe63ba76c6689e,
@@ -1853,6 +1888,80 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1150703316
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1150703317}
+  - component: {fileID: 1150703319}
+  - component: {fileID: 1150703318}
+  m_Layer: 5
+  m_Name: WinPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1150703317
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150703316}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1443963133}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1150703318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150703316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: e46c9b0b7167be044a828624f76371e4, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1150703319
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150703316}
+  m_CullTransparentMesh: 0
 --- !u!1 &1173677607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1888,6 +1997,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 19397790}
         m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 926107309}
+        m_MethodName: SetWin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1950,7 +2070,7 @@ Transform:
   m_GameObject: {fileID: 1173677607}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.8, y: -6.35, z: 0}
-  m_LocalScale: {x: 77.44, y: 1, z: 1}
+  m_LocalScale: {x: 200, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -2045,7 +2165,7 @@ GameObject:
   - component: {fileID: 1297745675}
   - component: {fileID: 1297745677}
   m_Layer: 0
-  m_Name: Spaceship 512 px
+  m_Name: StationStatic1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2141,7 +2261,7 @@ GameObject:
   - component: {fileID: 1358010192}
   - component: {fileID: 1358010193}
   m_Layer: 0
-  m_Name: Spaceship 512 px (2)
+  m_Name: StationStatic3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2373,6 +2493,7 @@ MonoBehaviour:
   basher: {fileID: 1380866913}
   maxMass: 100
   speed: 40000
+  attacking: 0
 --- !u!50 &1380866913 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 486020943553844034, guid: fad7e4eceb5670f44922251a7ad43863,
@@ -2448,6 +2569,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18f1ac814ff2ad647a8329d4021c0ee7, type: 3}
+--- !u!224 &1443963133 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8590367498326607680, guid: 3550f948f0a56a243a638c1daa0b07d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 918302030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1479052378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2545,8 +2672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 535e0c5ec3f54b246875b84073fb621f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightLimit: 0
-  leftLimit: -2
 --- !u!4 &1542005400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3889997398438913878, guid: d0ae5bf710ec9df4e84bcc7de11c56bc,
@@ -2565,7 +2690,7 @@ GameObject:
   - component: {fileID: 1598131751}
   - component: {fileID: 1598131752}
   m_Layer: 0
-  m_Name: Spaceship 512 px (1)
+  m_Name: StationStatic2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2991,7 +3116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1683581015}
   m_Layer: 0
-  m_Name: SpaceshipPatrol
+  m_Name: SpaceshipPatrolRoute
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3011,7 +3136,7 @@ Transform:
   - {fileID: 2126677648}
   - {fileID: 709301700}
   m_Father: {fileID: 656918576}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1691709716 stripped
 Transform:
