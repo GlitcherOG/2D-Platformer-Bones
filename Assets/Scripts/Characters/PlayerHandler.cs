@@ -155,9 +155,9 @@ public class PlayerHandler : MonoBehaviour
         //Enables collisons with character
         character[charTest].col.enabled = false;
         //Freezes rigidbody 
-        character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
         //Starts Corutine on Unfreeze ground
-        StartCoroutine(UnfreezeGround(charTest));
+        //StartCoroutine(UnfreezeGround(charTest));
     }
 
     //Unfreezes the character
