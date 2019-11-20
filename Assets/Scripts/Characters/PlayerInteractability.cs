@@ -4,53 +4,40 @@ using UnityEngine;
 
 public class PlayerInteractability : MonoBehaviour
 {
-    public Switch switchTog;
-    public CharacterController2D controller;
-    public bool attack;
-
-    private void Start()
-    {
-        controller = GetComponent<CharacterController2D>();
-    }
+    public Switch switchTog; //Switch script
+    public Bash attack; //If attacking
 
     private void Update()
     {
+        //if there is a script in the variable
         if (switchTog != null)
         {
+            //If button Interact is down toggle the switch
             if (Input.GetButtonDown("Interact"))
             {
                 switchTog.toggleSwitch();
             }
-            if (Input.GetButtonDown("Shift"))
-            {
-                attack = true;
-            }
-            if (Input.GetButtonUp("Shift"))
-            {
-                attack = false;
-            }
         }
     }
 
-
+    //On trigger entered
     private void OnTriggerEnter2D(Collider2D col)
     {
+        //If the collided with object that has the tag Item destory it 
         if (col.CompareTag("Item"))
         {
             Destroy(col.gameObject);
         }
+        //If the collided with object has the tag switch, Get the componemt switch
         if (col.CompareTag("Switch"))
         {
             switchTog = col.gameObject.GetComponent<Switch>();
-        }
-        if (col.CompareTag("Enemy"))
-        {
-
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
+        //if the collided with object has the tag Switch, Set the variable to null
         if (col.CompareTag("Switch"))
         {
             switchTog = null;

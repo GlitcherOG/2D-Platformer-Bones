@@ -17,6 +17,8 @@ public class Bash : MonoBehaviour
 
     //the delay it takes before the mass of the character is returned to normal (so it can't push objects anymore)
     private float delay = 0.5f;
+
+    public bool attacking;
     
     void Update()
     {
@@ -26,10 +28,15 @@ public class Bash : MonoBehaviour
             basher.mass = maxMass;
             //give the character a boost to 'bash' other rigidbody objects (hardcoded weight and on goes right)
             basher.AddForce(new Vector2(speed, 0));
-
             //remove the extra mass after the 'delay' time
             StartCoroutine(RemoveMass());
-
+            //attacking set to true;
+            attacking = true;
+        }
+        else
+        {
+            //attacking set to false;
+            attacking = false;
         }
     }
 

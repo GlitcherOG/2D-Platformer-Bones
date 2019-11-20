@@ -52,7 +52,9 @@ public class PlayerHandler : MonoBehaviour
     {
         playerAudio = GetComponent<AudioSource>();
         healthPerSection = (maxHealth / (heartSlots.Length) * .2f);
+        //Set variable to false
         arrow.enabled = false;
+        //Start coruntine PosFix to fix character begining positions
         StartCoroutine(PosFix());
     }
     void Update()
@@ -79,17 +81,20 @@ public class PlayerHandler : MonoBehaviour
         {
             damageTimer -= Time.deltaTime;
         }
+
+        //Gets all input variables
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         bool isJumping = Input.GetButtonDown("Jump");
-
+        
+        //If jumping is true add the characters jump height to that
         if (isJumping)
         {
             character[characterSelected].controller.Jump(character[characterSelected].jumpHeight);
         }
         //Adds the movement to the selected charatcter
         character[characterSelected].controller.Move(horizontal * character[characterSelected].moveSpeed);
-        //If E is pushed run change chararcter
+        //If switch input is pushed run change chararcter
         if (Input.GetButtonDown("Switch"))
         {
             ChangeCharacter();
@@ -101,6 +106,7 @@ public class PlayerHandler : MonoBehaviour
     //Changes the current character
     public void ChangeCharacter()
     {
+        //Removes all force being added on to the character
         character[characterSelected].controller.Move(0);
         //If character is over the ammout of characters that exist set character back to 0, else go to next character
         if (characterSelected >= character.Length - 1)
@@ -125,12 +131,16 @@ public class PlayerHandler : MonoBehaviour
         {
             if (i != characterSelected)
             {
+                //Start ground test to freeze when character hits ground
                 StartCoroutine(GroundTest(i));
             }
             else
             {
+                //Enable colider
                 character[i].col.enabled = true;
+                //Change gravity scale to 1
                 character[i].col.attachedRigidbody.gravityScale = 1;
+                //Unfreeze rigidbody x and y
                 character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
             }
         }
@@ -143,6 +153,7 @@ public class PlayerHandler : MonoBehaviour
         //for all the hearts in heart slots        
         for (int i = 0; i < heartSlots.Length; i++)
         {
+            //if current heal is greater than the health persection change the spirte to sprite 0 else sprite 1
             if (curHealth >= (healthPerSection * 5) + healthPerSection * 5 * i)
             {
                 heartSlots[i].sprite = heartSprites[0];
@@ -155,21 +166,27 @@ public class PlayerHandler : MonoBehaviour
 
     }
 
+    //Freezes the character when they touch the ground
     IEnumerator GroundTest(int charTest)
     {
+        //Waits untill the bool in controller IsGrounded is true
         yield return new WaitUntil(() => character[charTest].controller.IsGrounded);
-        if (character[charTest].controller.IsGrounded)
-        {
-            character[charTest].col.enabled = false;
-            character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-            StartCoroutine(UnfreezeGround(charTest));
-        }
+        //Enables collisons with character
+        character[charTest].col.enabled = false;
+        //Freezes rigidbody 
+        character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        //Starts Corutine on Unfreeze ground
+        StartCoroutine(UnfreezeGround(charTest));
     }
 
+    //Unfreezes the character
     IEnumerator UnfreezeGround(int charTest)
     {
+        //Wait 1 milisecond
         yield return new WaitForSeconds(0.1f);
+        //Unfreeze the character
         character[charTest].col.attachedRigidbody.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+        //Change the gravity to zero
         character[charTest].col.attachedRigidbody.gravityScale = 0;
     }
 
@@ -181,50 +198,28 @@ public class PlayerHandler : MonoBehaviour
             curHealth -= 5;
             damageTimer = 1;
         }
-        
+        if(curHealth==0)
+        {
+            Death();
+        }
     }
 
     public void Death()
     {
-        // set the death flag to this funciton int's called again
-        isDead = true;
-
-        //Set the AudioSource to play the death clip
-        playerAudio.clip = deathClip;
-        playerAudio.Play();
-
-        deathImage.gameObject.GetComponent<Animator>().SetTrigger("Dead");
-        Invoke("Revive", 9f);
-
+        
     }
 
     //Allows for a moment of physics at start to fix character locations and make it so that object physics
     IEnumerator PosFix()
     {
+        //Waits 1 millisecond for physics to fix character positions
         yield return new WaitForSeconds(0.1f);
+        //For all characters excpet active disable collisons and freeze position
         for (int i = 1; i < character.Length; i++)
         {
             character[i].col.enabled = false;
             character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            character[i].col.attachedRigidbody.gravityScale = 0;
         }
     }
-    //void Revive()
-    //{
-    //    isDead = false;
-    //    curHealth = maxHealth;
-
-    //    //move and rotate spawn location
-    //    this.transform.position = curCheckPoint.position;
-    //    this.transform.rotation = curCheckPoint.rotation;
-    //    deathImage.gameObject.GetComponent<Animator>().SetTrigger("Alive");
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("CheckPoint"))
-    //    {
-    //        curCheckPoint = other.transform;
-    //    }
-    //}
-
 }
