@@ -19,16 +19,17 @@ public class Bash : MonoBehaviour
     private float delay = 0.5f;
 
     public bool attacking;
-    
+    private bool isBashing = false;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
+        if (Input.GetKeyDown(KeyCode.F)  && !isBashing)
+        {            
             //set mass higher to be able to push objects
             basher.mass = maxMass;
             //give the character a boost to 'bash' other rigidbody objects (hardcoded weight and on goes right)
             basher.AddForce(new Vector2(speed, 0));
             //remove the extra mass after the 'delay' time
+            isBashing = true;
             StartCoroutine(RemoveMass());
             //attacking set to true;
             attacking = true;
@@ -46,6 +47,12 @@ public class Bash : MonoBehaviour
         // Start a delay 
         yield return new WaitForSeconds(delay);
         //change mass to 1 (game standard)
-        basher.mass = 1;        
+        basher.mass = 1;
+        //set isBashing to false
+        isBashing = false;
+
+        basher.velocity = new Vector2(0,0);
+
+
     }
 }

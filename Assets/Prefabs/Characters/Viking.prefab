@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 5968854524641124329}
   - component: {fileID: 5968854524641124328}
   - component: {fileID: 409587898}
+  - component: {fileID: 2339859695312216322}
   m_Layer: 0
   m_Name: Viking
   m_TagString: Player
@@ -245,4 +246,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchTog: {fileID: 0}
-  controller: {fileID: 0}
+  attack: {fileID: 0}
+--- !u!114 &2339859695312216322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5968854524641124333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d8bfa6e592597418e7ef0d4fd98ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basher: {fileID: 5968854524641124330}
+  maxMass: 100
+  speed: 40000
+  attacking: 0

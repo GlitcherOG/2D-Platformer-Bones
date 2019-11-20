@@ -147,7 +147,7 @@ public class CharacterController2D : MonoBehaviour
             {
                 Ray groundRay = new Ray(transform.position, Vector3.down);
                 RaycastHit2D groundHit = Physics2D.Raycast(groundRay.origin, groundRay.direction, m_GroundRayLength, m_WhatIsGround);
-                transform.SetParent(groundHit.collider.gameObject.transform);
+                //transform.SetParent(groundHit.collider.gameObject.transform);
                 if (groundHit.collider != null)
                 {
                     Vector3 slopeDirection = Vector3.Cross(Vector3.up, Vector3.Cross(Vector3.up, groundHit.normal));
