@@ -197,7 +197,7 @@ public class PlayerHandler : MonoBehaviour
         for (int i = 1; i < character.Length; i++)
         {
             character[i].col.enabled = false;
-            character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+            character[i].col.attachedRigidbody.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
             character[i].col.attachedRigidbody.gravityScale = 0;
         }
     }
