@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile2 : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
-    public GameObject projectile;
+    public GameObject projectile; //Arrow
     public bool ready = true;
     public float projectileSpeed = 5;
     public Animator Anim;

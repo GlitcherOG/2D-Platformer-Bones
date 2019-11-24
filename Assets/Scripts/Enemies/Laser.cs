@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    
     // A laser prefab that shoots directly down (is visual only)
     void Start()
     {

@@ -50,9 +50,7 @@ public class Bash : MonoBehaviour
         basher.mass = 1;
         //set isBashing to false
         isBashing = false;
-
+        //Remove Velocity
         basher.velocity = new Vector2(0,0);
-
-
     }
 }

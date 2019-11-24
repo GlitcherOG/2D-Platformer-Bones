@@ -4,9 +4,8 @@ using System;
 
 public class ProjectileHandler : MonoBehaviour
 {
-    string[] tags = new string[] { "Player", "Projectile" };
-    public GameObject stuckObject;
-    public bool stuck;
+    string[] tags = new string[] { "Player", "Projectile" }; //Tags for what to stop the arrow at
+    private bool stuck; //Projectile is stuck in object
 
     void Update()
     {
@@ -20,27 +19,30 @@ public class ProjectileHandler : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
-
+    //Runs on trigger enter
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Sets stuck bool to true
         stuck = true;
-        if (stuckObject == null)
+        //Goes through all tags
+        for (int i = 0; i < tags.Length; i++)
         {
-            for (int i = 0; i < tags.Length; i++)
+            //If the collision tag is equal to the tag set stuck to false
+            if (collision.tag == tags[i])
             {
-                if (collision.tag == tags[i])
-                {
-                    i = tags.Length;
-                    stuck = false;
-                }
+                //Changes stuck to false
+                stuck = false;
             }
-            if (stuck)
-            {
-                stuck = collision.gameObject;
-                gameObject.transform.SetParent(collision.gameObject.transform);
-                gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
-                gameObject.GetComponent<Collider2D>().enabled = false;
-            }
+        }
+        //If stuck is true run code below
+        if (stuck)
+        {
+            //Set the projectiles parent to the collided object
+            gameObject.transform.SetParent(collision.gameObject.transform);
+            //Get the projectiles rigidbody and freeze the position of it
+            gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+            //Disable the collider of the arrow
+            gameObject.GetComponent<Collider2D>().enabled = false;
         }
     }
 }

@@ -5,11 +5,12 @@ using UnityEngine.Events;
 
 public class Bridge : MonoBehaviour
 {
-    public Switch tog;
-    public UnityEvent onToggle;
+    public Switch tog; //Switch Toggle Script
+    public UnityEvent onToggle; //Unity event for when toggle is true
 
     void Update()
     {
+        //If the Switch is on invoke Ontoggle
         if(tog.toggle == true)
         {
             onToggle.Invoke();

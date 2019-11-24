@@ -24,7 +24,7 @@ public class PlayerHandler : MonoBehaviour
 
     public Character[] character; //Character struct variable
     public Image logoswitch; //Character changer image
-    public Projectile2 arrow; //Arrow script variable 
+    public Projectile arrow; //Arrow script variable 
 
     [Header("Value Variables")]
     public float curHealth; //Current characters health

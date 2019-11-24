@@ -16,8 +16,5 @@ public class EndGameShip : MonoBehaviour
             // rotate rigid body toward direction it is moving
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.back);
         }*/
-
-        
-
     }
 }

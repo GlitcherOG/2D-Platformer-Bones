@@ -51,23 +51,14 @@ public class CharacterController2D : MonoBehaviour
         Anim = GetComponent<Animator>();
         //Get rigidbody gravity scale and set into a variable 
         m_OriginalGravityScale = Rigidbody.gravityScale;
-
+        //If OnLandEvent is null, Set it to equal a new unity event
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(m_GroundCheck.position, m_GroundedRadius);
-        Gizmos.DrawWireSphere(m_FrontCheck.position, m_FrontCheckRadius);
 
-        Gizmos.color = Color.blue;
-        Ray groundRay = new Ray(transform.position, Vector3.down);
-        Gizmos.DrawLine(groundRay.origin, groundRay.origin + groundRay.direction * m_GroundRayLength);
-
-    }
     private void FixedUpdate()
     {
+        //
         AnimateDefault();
 
         bool wasGrounded = IsGrounded;
@@ -84,7 +75,6 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
-
 
         colliders = Physics2D.OverlapCircleAll(m_FrontCheck.position, m_FrontCheckRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -129,7 +119,6 @@ public class CharacterController2D : MonoBehaviour
 
         if (IsGrounded && temp==false)
         {
-
             IsGrounded = false;
             Rigidbody.AddForce(new Vector2(0f, height + Rigidbody.velocity.y), ForceMode2D.Impulse);
         }
@@ -147,7 +136,6 @@ public class CharacterController2D : MonoBehaviour
             {
                 Ray groundRay = new Ray(transform.position, Vector3.down);
                 RaycastHit2D groundHit = Physics2D.Raycast(groundRay.origin, groundRay.direction, m_GroundRayLength, m_WhatIsGround);
-                //transform.SetParent(groundHit.collider.gameObject.transform);
                 if (groundHit.collider != null)
                 {
                     Vector3 slopeDirection = Vector3.Cross(Vector3.up, Vector3.Cross(Vector3.up, groundHit.normal));
