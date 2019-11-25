@@ -3,9 +3,6 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-   //RECOMMENT ALL THIS CODE
-
-    // Member Variables
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f; //Movement smoothing for the charactor
     [SerializeField] private bool m_AirControl = false; //Allow control for character in the air
     [SerializeField] private bool m_StickToSlopes = true; //Sitck to slopes to allow for easier controls
@@ -30,7 +27,7 @@ public class CharacterController2D : MonoBehaviour
 
     [Header("Abilites")]
     public bool dJump; //If the character can double jump
-    private bool temp; //Test variable
+    private bool jumpTest; //Test variable for jumping
 
     public bool HasParameter(string paramName, Animator animator)
     {
@@ -58,68 +55,93 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //
+        //Start the defualt animations
         AnimateDefault();
-
+        //Change the bool wasGrounded to the state of IsGrounded
         bool wasGrounded = IsGrounded;
+        //Change IsGounded to false
         IsGrounded = false;
+        //Check for if the front is blocked to false
         IsFrontBlocked = false;
-
+        //Add all the colliders within a circle area of ground check position to colliders
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, m_GroundedRadius, m_WhatIsGround);
+        //run check for every collider
         for (int i = 0; i < colliders.Length; i++)
         {
+            //if the game object is not the player
             if (colliders[i].gameObject != gameObject)
             {
+                //Set IsGrounded to true
                 IsGrounded = true;
+                //If wasGrounded was false 
                 if (!wasGrounded)
+                    //Invoke OnLandEvent
                     OnLandEvent.Invoke();
             }
         }
-
+        //Add all the colliders within a circle area of front check position to colliders
         colliders = Physics2D.OverlapCircleAll(m_FrontCheck.position, m_FrontCheckRadius, m_WhatIsGround);
+        //run check for every collider
         for (int i = 0; i < colliders.Length; i++)
         {
+            //if the game object is not the player
             if (colliders[i].gameObject != gameObject)
             {
+                //Set IsFrontBlocked to true
                 IsFrontBlocked = true;
             }
         }
+        //If IsGrounded is true
         if(IsGrounded)
         {
-            temp = false;
+            //Set jumpTest to false
+            jumpTest = false;
         }
     }
-
+    //Default set of animations
     private void AnimateDefault()
     {
+        //If IsGrounded Exist set animation to the state of IsGrounded
         if(HasParameter("IsGrounded", Anim))
             Anim.SetBool("IsGrounded", IsGrounded);
-
-        if(HasParameter("JumpY", Anim))
+        //If JumpY Exist set animation to the float of Rigidbodys vertical velocity 
+        if (HasParameter("JumpY", Anim))
             Anim.SetFloat("JumpY", Rigidbody.velocity.y);
     }
 
+    //Flip the sprite of the player
     public void Flip()
     {
+        //Change IsFacingRight to the opposite of its current state
         IsFacingRight = !IsFacingRight;
-
+        //Add the local scale of the player to the vector 3
         Vector3 theScale = transform.localScale;
+        //Muliply the x factor of the scale by negative one
         theScale.x *= -1;
+        //Change the player to have the new scale
         transform.localScale = theScale;
     }
     
+    //When jump is trigged
     public void Jump(float height)
     {
-        if (!IsGrounded && dJump == true && temp == false)
+        //Check if is grounded is false, double jump is true and jump test is false
+        if (!IsGrounded && dJump && !jumpTest)
         {
-            temp = true;
+            //Set jumpTest to true
+            jumpTest = true;
+            //Set IsGrounded to false
             IsGrounded = false;
-            Rigidbody.AddForce(new Vector2(0f, height+Rigidbody.velocity.y), ForceMode2D.Impulse);
+            //Add force value of height to the RigidBody
+            Rigidbody.AddForce(new Vector2(0f, height + Rigidbody.velocity.y), ForceMode2D.Impulse);
         }
-
-        if (IsGrounded && temp==false)
+        //If IsGrounded is true and jumpTest is false
+        //For double Jumping
+        if (IsGrounded && !jumpTest)
         {
+            //Set is Grounded to false
             IsGrounded = false;
+            //Add force value of height to the RigidBody
             Rigidbody.AddForce(new Vector2(0f, height + Rigidbody.velocity.y), ForceMode2D.Impulse);
         }
     }
@@ -127,45 +149,57 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float offsetX)
     {
+        //If Animator has parameter IsRuunning
         if (HasParameter("IsRunning", Anim))
+            //Set Bool for IsRUnning 
             Anim.SetBool("IsRunning", offsetX != 0);
-
+        //If IsGrounded is true as well as AirControl
         if (IsGrounded || m_AirControl)
         {
+            //If Stick to Slopes is true
             if (m_StickToSlopes)
             {
+                //Nre ray the points downward from the player
                 Ray groundRay = new Ray(transform.position, Vector3.down);
+                //Check what the raycast has hit and set it to a variable
                 RaycastHit2D groundHit = Physics2D.Raycast(groundRay.origin, groundRay.direction, m_GroundRayLength, m_WhatIsGround);
+                //If the raycast has hit something
                 if (groundHit.collider != null)
                 {
+                    //New Vector3 to find the slopes direction
                     Vector3 slopeDirection = Vector3.Cross(Vector3.up, Vector3.Cross(Vector3.up, groundHit.normal));
+                    //set new variable slope thats the product of two vectors 
                     float slope = Vector3.Dot(Vector3.right * offsetX, slopeDirection);
-
+                    //Calculate the slope added  to the of
                     offsetX += offsetX * slope;
-
+                    //Get the float angle from the vector
                     float angle = Vector2.Angle(Vector3.up, groundHit.normal);
+                    //If the angle is greater than 0
                     if (angle > 0)
                     {
+                        //Set Rigidbodys gravity to 0
                         Rigidbody.gravityScale = 0;
+                        //Change Rigidbody velocity to new Vector2 using Velocity x
                         Rigidbody.velocity = new Vector2(Rigidbody.velocity.x, 0f);
                     }
                 }
             }
-
+            //
             Vector3 targetVelocity = new Vector2(offsetX, Rigidbody.velocity.y);
-
+            //New Vector3 velocity
             Vector3 velocity = Vector3.zero;
-
+            //Changes the rigidbody velocity 
             Rigidbody.velocity = Vector3.SmoothDamp(Rigidbody.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
-
-
+            //If offset is greater than zero and isnt facing right
             if (offsetX > 0 && !IsFacingRight)
             {
+                //Flip the player object
                 Flip();
             }
-
+            //if offset is less than zero and facing right is true
             else if (offsetX < 0 && IsFacingRight)
             {
+                //Flip the player object
                 Flip();
             }
         }

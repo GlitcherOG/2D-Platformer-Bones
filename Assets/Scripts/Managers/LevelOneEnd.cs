@@ -7,7 +7,7 @@ using UnityEngine.Animations;
 public class LevelOneEnd : MonoBehaviour
 {
     public Animator anim; //Fade out animator
-
+    public GameManager manager;
     //On trigger enter start IEnumeraotr ending
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -25,7 +25,7 @@ public class LevelOneEnd : MonoBehaviour
         //Wait for 1.23 seconds
         yield return new WaitForSeconds(1.23f);
         //Go to next level
-        GameManager.NextLevel();
+        manager.NextLevel();
     }
 
 }

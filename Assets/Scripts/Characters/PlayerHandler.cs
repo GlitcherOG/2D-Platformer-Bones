@@ -51,15 +51,17 @@ public class PlayerHandler : MonoBehaviour
     }
     void Update()
     {
+        //Update and check to see if the correct ammount of hearts is being displayed
         UpdateHeart();
         //Player is Dead
         if (curHealth <= 0)
         {
             Death();
         }
-
+        //If the damage timer is greater than zero
         if (damageTimer > 0)
         {
+            //Remove delta time from the timer
             damageTimer -= Time.deltaTime;
         }
 
