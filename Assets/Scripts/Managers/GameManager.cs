@@ -29,9 +29,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    public void Win()
-    {
-        
-    }
+   
 
 }

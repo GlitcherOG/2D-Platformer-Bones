@@ -19,12 +19,12 @@ public class WinManager : MonoBehaviour
         //get the image of the win panel
         winImage = WinPanel.GetComponent<Image>();
         // and set alpha to 1
-        winImage.color = new Color(winImage.color.r, winImage.color.g, winImage.color.b, 1f);        
+        winImage.color = new Color(winImage.color.r, winImage.color.g, winImage.color.b, 1f);
         //Initiate the win and return to menu aftr a few seconds
         YouWon();
         //set Time scale to 0 so game is no longer interactive
         Time.timeScale = 0;
-
+        
     }
 
 
@@ -47,7 +47,7 @@ public class WinManager : MonoBehaviour
 
     IEnumerator YouWon()
     {
-        yield return new WaitForSeconds(6f);        
+        yield return new WaitForSeconds(6f);
         SceneManager.LoadScene(0);
     }
 }
