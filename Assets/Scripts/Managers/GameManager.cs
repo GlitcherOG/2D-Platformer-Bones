@@ -29,6 +29,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
+    public void ChangeLevel(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
    
 
 }
