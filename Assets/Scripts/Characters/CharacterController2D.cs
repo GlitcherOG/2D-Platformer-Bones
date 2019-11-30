@@ -7,8 +7,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private bool m_AirControl = false; //Allow control for character in the air
     [SerializeField] private bool m_StickToSlopes = true; //Sitck to slopes to allow for easier controls
     [SerializeField] private LayerMask m_WhatIsGround;                          
-    [SerializeField] private Transform m_GroundCheck; //Ground check gameobject
-    [SerializeField] private Transform m_FrontCheck;  //Front check gameobject
+    [SerializeField] private Transform m_GroundCheck = null; //Ground check gameobject
+    [SerializeField] private Transform m_FrontCheck = null;  //Front check gameobject
     [SerializeField] private float m_GroundedRadius = .05f;//Radius for ground check               
     [SerializeField] private float m_FrontCheckRadius = .05f;//Radius for front check  
     [SerializeField] private float m_GroundRayLength = .5f;//Radius for ground ray length check  
