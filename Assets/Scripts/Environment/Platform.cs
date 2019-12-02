@@ -19,7 +19,7 @@ public class Platform : MonoBehaviour
     void Update()
     {
         //If script toggle is true move platform
-        if (toggle.toggle)
+        if (toggle.toggleState)
         {
             //Sets the transformation of the cuurrent waypoint
             Transform currentPoint = points[currentWaypoint];

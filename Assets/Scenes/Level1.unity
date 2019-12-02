@@ -5709,6 +5709,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7914017047337320281, guid: df58b028da955fd499e8e08a30b86a0b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a103c7f3dda015847aa2dd4bf31656e2,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df58b028da955fd499e8e08a30b86a0b, type: 3}
 --- !u!1 &1601263563
@@ -8364,6 +8370,46 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: logoswitch
+      value: 
+      objectReference: {fileID: 1762734551}
+    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: heartSlots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1109060676}
+    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: heartSlots.Array.data[1]
+      value: 
+      objectReference: {fileID: 128858255}
+    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: heartSlots.Array.data[2]
+      value: 
+      objectReference: {fileID: 1355112834}
+    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: heartSlots.Array.data[3]
+      value: 
+      objectReference: {fileID: 1316640648}
+    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: heartSlots.Array.data[4]
+      value: 
+      objectReference: {fileID: 750354255}
+    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: character.Array.data[1].jumpHeight
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
+        type: 3}
+      propertyPath: character.Array.data[2].jumpHeight
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 486020944033905786, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8418,46 +8464,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
-        type: 3}
-      propertyPath: logoswitch
-      value: 
-      objectReference: {fileID: 1762734551}
-    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
-        type: 3}
-      propertyPath: heartSlots.Array.data[0]
-      value: 
-      objectReference: {fileID: 1109060676}
-    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
-        type: 3}
-      propertyPath: heartSlots.Array.data[1]
-      value: 
-      objectReference: {fileID: 128858255}
-    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
-        type: 3}
-      propertyPath: heartSlots.Array.data[2]
-      value: 
-      objectReference: {fileID: 1355112834}
-    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
-        type: 3}
-      propertyPath: heartSlots.Array.data[3]
-      value: 
-      objectReference: {fileID: 1316640648}
-    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
-        type: 3}
-      propertyPath: heartSlots.Array.data[4]
-      value: 
-      objectReference: {fileID: 750354255}
-    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
-        type: 3}
-      propertyPath: character.Array.data[1].jumpHeight
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 486020944033905791, guid: fad7e4eceb5670f44922251a7ad43863,
-        type: 3}
-      propertyPath: character.Array.data[2].jumpHeight
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 486020945173453498, guid: fad7e4eceb5670f44922251a7ad43863,
         type: 3}

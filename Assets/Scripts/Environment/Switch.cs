@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    public bool toggle; //Switch state bool
+    public bool toggleState; //Switch state bool
     public Sprite[] states; //Diffrent sprite states
     public SpriteRenderer currentState; //current sprite renderer
 
@@ -16,6 +16,7 @@ public class Switch : MonoBehaviour
 
     public void toggleSwitch(bool toggle = true)
     {
+        toggleState = toggle;
         //If toggle is true change the sprite to last sprite
         if (toggle == true) 
         {

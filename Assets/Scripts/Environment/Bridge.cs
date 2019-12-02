@@ -11,7 +11,7 @@ public class Bridge : MonoBehaviour
     void Update()
     {
         //If the Switch is on invoke Ontoggle
-        if(tog.toggle == true)
+        if(tog.toggleState == true)
         {
             onToggle.Invoke();
         }
